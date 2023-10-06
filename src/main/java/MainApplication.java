@@ -23,19 +23,14 @@ public class MainApplication {
             scanner.nextLine();
 
             switch (choice) {
-                case 1:
-                    addAnimalToZoo(scanner, zoo);
-                    break;
-                case 2:
-                    zoo.displayAnimals();
-                    break;
-                case 3:
+                case 1 -> addAnimalToZoo(scanner, zoo);
+                case 2 -> zoo.displayAnimals();
+                case 3 -> {
                     System.out.println("Exiting program.");
                     scanner.close();
                     System.exit(0);
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
+                }
+                default -> System.out.println("Invalid choice. Please try again.");
             }
         }
     }
@@ -58,27 +53,16 @@ public class MainApplication {
         Animal animal;
 
         switch (animalChoice) {
-            case 1:
-                animal = new Lion(name, age);
-                break;
-            case 2:
-                animal = new Elephant(name, age);
-                break;
-            case 3:
-                animal = new Shark(name, age);
-                break;
-            case 4:
-                animal = new Gorilla(name, age);
-                break;
-            case 5:
-                animal = new Snake(name, age);
-                break;
-            case 6:
-                animal = new Penguin(name, age);
-                break;
-            default:
+            case 1 -> animal = new Lion(name, age);
+            case 2 -> animal = new Elephant(name, age);
+            case 3 -> animal = new Shark(name, age);
+            case 4 -> animal = new Gorilla(name, age);
+            case 5 -> animal = new Snake(name, age);
+            case 6 -> animal = new Penguin(name, age);
+            default -> {
                 System.out.println("Invalid choice. Animal not added to the zoo.");
                 return;
+            }
         }
 
         zoo.addAnimal(animal);
