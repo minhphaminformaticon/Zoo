@@ -14,6 +14,7 @@ public class MainApplication {
         System.out.println("    (,,,)~(,,,)`-._##____________)");
 
         while (true) {
+            System.out.println();
             System.out.println("1. Add an animal to the zoo");
             System.out.println("2. Display animals in the zoo");
             System.out.println("3. Exit");
@@ -48,6 +49,12 @@ public class MainApplication {
         System.out.println("4. Gorilla");
         System.out.println("5. Snake");
         System.out.println("6. Penguin");
+        System.out.println("7. Tiger");
+        System.out.println("8. Crocodile");
+        System.out.println("9. Giraffe");
+        System.out.println("10. Zebra");
+        System.out.println("11. Panda");
+        System.out.println();
         int animalChoice = scanner.nextInt();
         scanner.nextLine();
         Animal animal;
@@ -59,6 +66,11 @@ public class MainApplication {
             case 4 -> animal = new Gorilla(name, age);
             case 5 -> animal = new Snake(name, age);
             case 6 -> animal = new Penguin(name, age);
+            case 7 -> animal = new Tiger(name, age);
+            case 8 -> animal = new Crocodile(name, age);
+            case 9 -> animal = new Giraffe(name, age);
+            case 10 -> animal = new Zebra(name, age);
+            case 11 -> animal = new Panda(name, age);
             default -> {
                 System.out.println("Invalid choice. Animal not added to the zoo.");
                 return;
@@ -66,6 +78,6 @@ public class MainApplication {
         }
 
         zoo.addAnimal(animal);
-        System.out.println(name + " has been added to the zoo as a " + animal.getClass());
+        System.out.println(name + " has been added to the zoo as a " + animal.getAnimal());
     }
 }

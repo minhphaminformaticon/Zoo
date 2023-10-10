@@ -4,7 +4,9 @@ public class Penguin extends Animal implements PreyAnimal, SeaAnimal {
     }
 
     String wings = name + " uses the wings to swim underwater.";
-    String beak = name + "uses the beak to consume fishes.";
+    String beak = name + " uses the beak to consume fishes.";
+
+    String animal = "penguin";
 
     @Override
     public void makeSound() {
@@ -39,7 +41,12 @@ public class Penguin extends Animal implements PreyAnimal, SeaAnimal {
     }
     @Override
     public String getIcon() {
-        icon = "\uD83D\uDC27";
+        icon = "✩\uD83D\uDC27✮";
         return super.getIcon();
+    }
+
+    @Override
+    public String getAnimal() {
+        return animal;
     }
 }

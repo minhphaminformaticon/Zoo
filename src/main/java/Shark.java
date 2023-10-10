@@ -5,6 +5,8 @@ public class Shark extends Animal implements Predator, SeaAnimal {
 
     String fin = "the big scary " + name + " uses its fins to swim in the deep.";
     String kingOfTheSea = "The shark is the king of the deep.";
+
+    String animal = "shark";
     @Override
     public void makeSound() {
         System.out.println(getName() + " makes underwater noises.");
@@ -47,7 +49,11 @@ public class Shark extends Animal implements Predator, SeaAnimal {
 
     @Override
     public String getIcon() {
-        icon = "\uD83E\uDD88";
-        return null;
+        icon = "✩\uD83E\uDD88✮";
+        return icon;
+    }
+    @Override
+    public String getAnimal() {
+        return animal;
     }
 }

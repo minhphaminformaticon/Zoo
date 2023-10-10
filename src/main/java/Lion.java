@@ -3,6 +3,8 @@ public class Lion extends Animal implements Predator {
     public Lion(String name, int age) {
         super(name, age);
     }
+    String animal = "lion";
+
     @Override
     public void makeSound() {
         System.out.println(getName() + " roars!");
@@ -20,7 +22,7 @@ public class Lion extends Animal implements Predator {
 
     @Override
     public String getIcon() {
-        icon = "\uD83E\uDD81";
+        icon = "✩\uD83E\uDD81✮";
         return super.getIcon();
     }
 
@@ -33,5 +35,10 @@ public class Lion extends Animal implements Predator {
     @Override
     public void atributes() {
         System.out.println(mane);
+    }
+
+    @Override
+    public String getAnimal() {
+        return animal;
     }
 }

@@ -1,14 +1,15 @@
-public class Gorilla extends Animal implements PreyAnimal {
-    public Gorilla(String name, int age) {
+public class Panda extends Animal implements PreyAnimal{
+
+    public Panda(String name, int age) {
         super(name, age);
     }
-    String animal = "gorilla";
+    String cuteEyes = getName() + " has super cute eyes.";
 
-    String bigArms = name + " has big enormous arms to climb trees.";
+    String animal = "panda";
 
     @Override
     public void makeSound() {
-        System.out.println(getName() + " beats its chest!");
+        System.out.println(getName() + " growls!" );
     }
 
     @Override
@@ -18,17 +19,17 @@ public class Gorilla extends Animal implements PreyAnimal {
 
     @Override
     public void atributes() {
-        System.out.println(bigArms);
+        System.out.println(cuteEyes);
     }
 
     @Override
     public void eatPlants() {
-        System.out.println(getName() + " eats plants.");
+        System.out.println(getName() + " eats bamboos everyday.");
     }
 
     @Override
     public String getIcon() {
-        System.out.println("✩\uD83E\uDD8D✮");
+        icon = "✩\uD83D\uDC3C✮";
         return super.getIcon();
     }
 

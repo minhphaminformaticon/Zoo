@@ -9,6 +9,7 @@ public class Snake extends Animal implements Predator {
     public void makeSound() {
         System.out.println(getName() + " hisses!");
     }
+    String animal = "snake";
 
     @Override
     public void action() {
@@ -34,7 +35,7 @@ public class Snake extends Animal implements Predator {
 
     @Override
     public String getIcon() {
-        System.out.println("\uD83D\uDC0D");
+        System.out.println("✩\uD83D\uDC0D✮");
         return super.getIcon();
     }
 }

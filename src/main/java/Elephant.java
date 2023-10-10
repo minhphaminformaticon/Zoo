@@ -2,8 +2,10 @@ public class Elephant extends Animal implements PreyAnimal {
     public Elephant(String name, int age) {
         super(name, age);
     }
-    String tusk = "the mighty " + name + "has big tusks.";
+    String tusk = "the mighty " + name + " has big tusks.";
     String trunk = "the elephant's trunk is used for eating, gripping or drinking.";
+
+    String animal = "elephant";
 
     @Override
     public void makeSound() {
@@ -17,7 +19,7 @@ public class Elephant extends Animal implements PreyAnimal {
 
     @Override
     public String getIcon() {
-        icon = "\uD83D\uDC18";
+        icon = "✩\uD83D\uDC18✮";
         return super.getIcon();
     }
 
@@ -30,5 +32,10 @@ public class Elephant extends Animal implements PreyAnimal {
     public void atributes() {
         System.out.println(tusk);
         System.out.println(trunk);
+    }
+
+    @Override
+    public String getAnimal() {
+        return animal;
     }
 }
