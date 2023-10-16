@@ -64,7 +64,6 @@ public class Game {
             System.out.println("You can try again.");
             return true;
         }
-        Game game = new Game();
         Random random = new Random();
 
         int index1 = random.nextInt(zooAnimals.size());
@@ -73,13 +72,13 @@ public class Game {
             index2 = random.nextInt(zooAnimals.size());
         } while (index2 == index1);
 
-        Animal animal1 = zooAnimals.get(index1);
-        Animal animal2 = zooAnimals.get(index2);
+        animal1 = zooAnimals.get(index1);
+        animal2 = zooAnimals.get(index2);
 
         Animal[] selectedAnimals = new Animal[]{animal1, animal2};
         System.out.println("Battle: " + selectedAnimals[0].getName() + " vs " + selectedAnimals[1].getName());
 
-        game.fight(selectedAnimals[0], selectedAnimals[1]);
+        fight(selectedAnimals[0], selectedAnimals[1]);
         return false;
     }
     public void attack(Animal animal1, Animal animal2){
