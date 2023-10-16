@@ -61,22 +61,22 @@ public class MainApplication {
         int age = scanner.nextInt();
         scanner.nextLine();
         do {
-            System.out.print("Enter the strength of the animal (max 100): ");
+            System.out.print("Enter the strength of the animal (max 100 min 10): ");
             strength = scanner.nextInt();
             scanner.nextLine();
-        } while (strength < 0 || strength > 100);
+        } while (strength < 10 || strength > 100);
 
         do {
-            System.out.print("Enter the health of the animal (max 200): ");
+            System.out.print("Enter the health of the animal (max 200 min 100): ");
             health = scanner.nextInt();
             scanner.nextLine();
-        } while (health < 0 || health > 200);
+        } while (health < 100 || health > 200);
 
         do {
-            System.out.print("Enter the defense of the animal (max 100): ");
+            System.out.print("Enter the defense of the animal (max 100 min 10): ");
             defense = scanner.nextInt();
             scanner.nextLine();
-        } while (defense < 0 || defense > 100);
+        } while (defense < 10 || defense > 100);
 
         System.out.println("Select the animal type:");
         System.out.println("1. Lion");

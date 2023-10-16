@@ -79,6 +79,21 @@ public class Game {
             System.out.println(animal1.name + " healed for " + actualHeal + " health.");
         }
     }
+    public void powerUp(Animal animal1){
+        this.animal1 = animal1;
+
+        System.out.println("the previous strength: " + animal1.strength);
+        System.out.println();
+
+        double strengthMultiplier = 1.2;
+        int currentStrength = animal1.strength;
+        double strengthMutiplied = currentStrength * strengthMultiplier;
+
+        currentStrength = (int) strengthMutiplied;
+        animal1.strength = currentStrength;
+
+        System.out.println(animal1.name + " has its strength increased to " + currentStrength);
+    }
     public void attack2(Animal animal1, Animal animal2){
         this.animal1 = animal1;
         this.animal2 = animal2;
@@ -111,7 +126,23 @@ public class Game {
             System.out.println(animal2.name + " healed for " + actualHeal + " health.");
         }
     }
+    public void powerUp2(Animal animal2){
+        this.animal2 = animal2;
+
+        System.out.println("the previous strength: " + animal2.strength);
+        System.out.println();
+
+        double strengthMultiplier = 1.2;
+        int currentStrength = animal2.strength;
+        double strengthMutiplied = currentStrength * strengthMultiplier;
+
+        currentStrength = (int) strengthMutiplied;
+        animal2.strength = currentStrength;
+
+        System.out.println(animal2.name + " has its strength increased to " + currentStrength);
+    }
     public void endGame(Animal animal1, Animal animal2) {
+        System.out.println();
         System.out.println("Game Over!");
         if (animal1.health <= 0 && animal2.health <= 0) {
             System.out.println("It's a draw! Both animals have fainted.");
@@ -137,6 +168,7 @@ public class Game {
                     System.out.println("choose 1 option player 1");
                     System.out.println("1. attack");
                     System.out.println("2. heal");
+                    System.out.println("3. power up");
                     System.out.println();
                     System.out.println("Max HP: " + maxHealth);
                     System.out.println("Current HP: " + animal1.health);
@@ -146,8 +178,9 @@ public class Game {
 
                     actionGame = Integer.parseInt(inputGame.nextLine());
                     switch (actionGame){
-                        case 1 ->   attack(animal1, animal2);
-                        case 2->    heal(animal1);
+                        case 1  ->   attack(animal1, animal2);
+                        case 2  ->   heal(animal1);
+                        case 3  ->   powerUp(animal1);
                         default -> System.out.println("Invalid choice. Please try again.");
                     }
                     isTurn = false;
@@ -158,6 +191,7 @@ public class Game {
                     System.out.println("choose 1 option player 2");
                     System.out.println("1. attack");
                     System.out.println("2. heal");
+                    System.out.println("3. power up");
                     System.out.println();
                     System.out.println("Max HP: " + maxHealth2);
                     System.out.println("Current HP: " + animal2.health);
@@ -167,7 +201,8 @@ public class Game {
                     actionGame2 = Integer.parseInt(inputGame2.nextLine());
                     switch (actionGame2) {
                         case 1 -> attack2(animal1, animal2);
-                        case 2 -> heal2(animal2);
+                        case 2 -> heal(animal2);
+                        case 3 -> powerUp(animal2);
                         default -> System.out.println("Invalid choice. Please try again.");
                     }
                     isTurn = true;
