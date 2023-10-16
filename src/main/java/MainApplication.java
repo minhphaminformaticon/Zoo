@@ -112,7 +112,6 @@ public class MainApplication {
                 return;
             }
         }
-
         zoo.addAnimal(animal);
         System.out.println(name + " has been added to the zoo as a " + animal.getAnimal());
     }

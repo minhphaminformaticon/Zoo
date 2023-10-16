@@ -27,8 +27,6 @@ public class Cage {
 
         return roundOff;
     }
-
-
     public void displayCageInfo() {
         System.out.println();
         System.out.println("Cage for " + animalType + ":");

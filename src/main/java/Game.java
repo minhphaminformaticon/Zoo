@@ -7,18 +7,56 @@ public class Game {
     private Animal animal2;
 
     int maxHealth;
-
-
     int maxHealth2;
-
-
     public boolean mainFunction;
+
+    int counter = 0;
+    int counter2 = 0;
+
+    Random countR = new Random();
+    Random countR2 = new Random();
 
     public Game(){
         mainFunction = true;
     }
+    public void increaseCounterForSmokesScreen(){
+        counter++;
+    }
+    public void executeSmokesBasedOnPercentage(){
+        int percentage = calculatePercentage();
 
+        if (countR.nextInt(100) < percentage) {
+            dodge();
+        }else {
+            attack(animal1, animal2);
+        }
+    }
+    public int calculatePercentage(){
+        return Math.min(counter * 20, 100);
+    }
+    public void dodge(){
+        System.out.println("attack dodged!");
+        counter = 0;
+    }
+    public void increaseCounterForSmokesScreen2(){
+        counter2++;
+    }
+    public void executeSmokesBasedOnPercentage2(){
+        int percentage = calculatePercentage2();
 
+        if (countR2.nextInt(100) < percentage) {
+            dodge2();
+        }else {
+            attack2(animal1, animal2);
+        }
+    }
+    public int calculatePercentage2(){
+        return Math.min(counter * 20, 100);
+    }
+    public void dodge2(){
+        System.out.println("attack dodged!");
+        counter2 = 0;
+    }
     public boolean startGame(List<Animal> zooAnimals) {
         if (zooAnimals.isEmpty() || zooAnimals.size() < 2) {
             System.out.println();
@@ -43,8 +81,6 @@ public class Game {
 
         game.fight(selectedAnimals[0], selectedAnimals[1]);
         return false;
-
-
     }
     public void attack(Animal animal1, Animal animal2){
         this.animal1 = animal1;
@@ -152,7 +188,6 @@ public class Game {
             System.out.println(animal1.getName() + " wins!");
         }
     }
-
     public void fight(Animal animal1, Animal animal2){
         boolean isTurn = true;
         if (animal1 == null || animal2 == null){
@@ -169,18 +204,21 @@ public class Game {
                     System.out.println("1. attack");
                     System.out.println("2. heal");
                     System.out.println("3. power up");
+                    System.out.println("4. set smokes");
                     System.out.println();
                     System.out.println("Max HP: " + maxHealth);
                     System.out.println("Current HP: " + animal1.health);
                     System.out.println("Strength: " + animal1.strength);
                     System.out.println("Defense: " + animal1.defense);
+                    System.out.println("Counter for smokes: " + counter);
                     System.out.println();
 
                     actionGame = Integer.parseInt(inputGame.nextLine());
                     switch (actionGame){
-                        case 1  ->   attack(animal1, animal2);
+                        case 1  ->   executeSmokesBasedOnPercentage();
                         case 2  ->   heal(animal1);
                         case 3  ->   powerUp(animal1);
+                        case 4 -> increaseCounterForSmokesScreen();
                         default -> System.out.println("Invalid choice. Please try again.");
                     }
                     isTurn = false;
@@ -192,6 +230,8 @@ public class Game {
                     System.out.println("1. attack");
                     System.out.println("2. heal");
                     System.out.println("3. power up");
+                    System.out.println("4. set smokes");
+                    System.out.println("Counter for smokes: " + counter2);
                     System.out.println();
                     System.out.println("Max HP: " + maxHealth2);
                     System.out.println("Current HP: " + animal2.health);
@@ -200,9 +240,10 @@ public class Game {
                     System.out.println();
                     actionGame2 = Integer.parseInt(inputGame2.nextLine());
                     switch (actionGame2) {
-                        case 1 -> attack2(animal1, animal2);
+                        case 1 -> executeSmokesBasedOnPercentage2();
                         case 2 -> heal(animal2);
                         case 3 -> powerUp(animal2);
+                        case 4 -> increaseCounterForSmokesScreen2();
                         default -> System.out.println("Invalid choice. Please try again.");
                     }
                     isTurn = true;
@@ -212,8 +253,6 @@ public class Game {
                     return;
                 }
             }
-
         }
     }
-
 }

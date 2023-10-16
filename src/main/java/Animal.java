@@ -8,9 +8,6 @@
         int strength;
 
         int defense;
-
-
-
         public Animal(String name, int age, int strength, int health, int defense) {
             this.name = name;
             this.age = age;
@@ -18,8 +15,6 @@
             this.health = health;
             this.defense = defense;
         }
-
-
         public String getAnimal(){return animal;}
 
         public abstract void makeSound();
@@ -48,8 +43,6 @@
         public int getDefense(){
             return defense;
         }
-
-
     }
 
 
