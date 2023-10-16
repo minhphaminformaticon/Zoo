@@ -23,6 +23,8 @@ public class RunZoo {
         newCage.addAnimal(animal);
         cages.add(newCage);
     }
+
+
     public void displayAnimals(){
         if (animals.isEmpty()) {
             System.out.println();
@@ -46,6 +48,10 @@ public class RunZoo {
                 System.out.println("--------------------------------------");
             }
         }
+    }
+
+    public List<Animal> getAnimals() {
+        return animals;
     }
 }
 

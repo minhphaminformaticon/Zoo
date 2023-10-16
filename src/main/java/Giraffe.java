@@ -1,7 +1,7 @@
 public class Giraffe extends Animal implements PreyAnimal{
 
-    public Giraffe(String name, int age) {
-        super(name, age);
+    public Giraffe(String name, int age, int strength, int health, int defense) {
+        super(name, age, strength, health, defense);
     }
     String animal = "giraffe";
 

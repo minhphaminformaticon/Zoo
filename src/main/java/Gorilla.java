@@ -1,6 +1,6 @@
 public class Gorilla extends Animal implements PreyAnimal {
-    public Gorilla(String name, int age) {
-        super(name, age);
+    public Gorilla(String name, int age, int strength, int health, int defense) {
+        super(name, age, strength, health, defense);
     }
     String animal = "gorilla";
 

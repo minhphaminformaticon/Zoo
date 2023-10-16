@@ -1,6 +1,6 @@
 public class Zebra extends Animal implements PreyAnimal{
-    public Zebra(String name, int age) {
-        super(name, age);
+    public Zebra(String name, int age, int strength, int health, int defense) {
+        super(name, age, strength, health, defense);
     }
     String stripedFur = getName() + " has striped black white fur.";
 

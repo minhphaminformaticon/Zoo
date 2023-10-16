@@ -1,7 +1,7 @@
 public class Panda extends Animal implements PreyAnimal{
 
-    public Panda(String name, int age) {
-        super(name, age);
+    public Panda(String name, int age, int strength, int health, int defense) {
+        super(name, age, strength, health, defense);
     }
     String cuteEyes = getName() + " has super cute eyes.";
 

@@ -1,6 +1,6 @@
 public class Crocodile extends Animal implements Predator{
-    public Crocodile(String name, int age) {
-        super(name, age);
+    public Crocodile(String name, int age, int strength, int health, int defense) {
+        super(name, age, strength, health, defense);
     }
     String claws = "With its sharp claws on all fours, it stalks its prey underwater.";
 

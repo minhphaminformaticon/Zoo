@@ -1,6 +1,6 @@
 public class Elephant extends Animal implements PreyAnimal {
-    public Elephant(String name, int age) {
-        super(name, age);
+    public Elephant(String name, int age, int strength, int health, int defense) {
+        super(name, age, strength, health, defense);
     }
     String tusk = "the mighty " + name + " has big tusks.";
     String trunk = "the elephant's trunk is used for eating, gripping or drinking.";

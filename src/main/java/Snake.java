@@ -1,6 +1,6 @@
 public class Snake extends Animal implements Predator {
-    public Snake(String name, int age) {
-        super(name, age);
+    public Snake(String name, int age, int strength, int health, int defense) {
+        super(name, age, strength, health, defense);
     }
 
     String scale = name + " uses the scale to shed its skin";

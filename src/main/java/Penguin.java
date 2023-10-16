@@ -1,6 +1,6 @@
 public class Penguin extends Animal implements PreyAnimal, SeaAnimal {
-    public Penguin(String name, int age) {
-        super(name, age);
+    public Penguin(String name, int age, int strength, int health, int defense) {
+        super(name, age, strength, health, defense);
     }
 
     String wings = name + " uses the wings to swim underwater.";

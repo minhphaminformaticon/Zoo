@@ -1,6 +1,6 @@
 public class Shark extends Animal implements Predator, SeaAnimal {
-    public Shark(String name, int age) {
-        super(name, age);
+    public Shark(String name, int age, int strength, int health, int defense) {
+        super(name, age, strength, health, defense);
     }
 
     String fin = "the big scary " + name + " uses its fins to swim in the deep.";

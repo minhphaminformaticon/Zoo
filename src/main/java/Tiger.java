@@ -1,6 +1,6 @@
 public class Tiger extends Animal implements Predator{
-    public Tiger(String name, int age) {
-        super(name, age);
+    public Tiger(String name, int age, int strength, int health, int defense) {
+        super(name, age, strength, health, defense);
     }
     String animal = "tiger";
     String claws = getName() + " has huge claws to deal huge damage to its prey.";
