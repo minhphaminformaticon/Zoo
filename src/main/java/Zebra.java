@@ -16,7 +16,7 @@ public class Zebra extends Animal implements PreyAnimal{
     }
 
     @Override
-    public void atributes() {
+    public void attributes() {
         System.out.println(stripedFur);
     }
 

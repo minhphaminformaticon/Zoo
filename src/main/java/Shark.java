@@ -22,7 +22,7 @@ public class Shark extends Animal implements Predator, SeaAnimal {
     }
 
     @Override
-    public void atributes() {
+    public void attributes() {
         System.out.println(fin);
         System.out.println(kingOfTheSea);
     }

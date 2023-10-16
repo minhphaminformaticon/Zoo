@@ -17,7 +17,7 @@ public class Gorilla extends Animal implements PreyAnimal {
     }
 
     @Override
-    public void atributes() {
+    public void attributes() {
         System.out.println(bigArms);
     }
 

@@ -91,7 +91,8 @@ public class Game {
         int dmgTaken= opDefense - pDamage;
 
         if (dmgTaken < 0) {
-            System.out.println(dmgTaken);
+            System.out.println();
+            System.out.println("received: " + dmgTaken);
             System.out.println();
             animal2.health += dmgTaken;
         }
@@ -138,7 +139,8 @@ public class Game {
 
         int dmgTaken= opDefense - pDamage;
         if (dmgTaken < 0) {
-            System.out.println(dmgTaken);
+            System.out.println();
+            System.out.println("received: " + dmgTaken);
             System.out.println();
             animal1.health += dmgTaken;
         }

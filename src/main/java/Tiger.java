@@ -16,7 +16,7 @@ public class Tiger extends Animal implements Predator{
     }
 
     @Override
-    public void atributes() {
+    public void attributes() {
         System.out.println(claws);
     }
 

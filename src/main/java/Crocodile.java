@@ -18,7 +18,7 @@ public class Crocodile extends Animal implements Predator{
     }
 
     @Override
-    public void atributes() {
+    public void attributes() {
         System.out.println(scale);
         System.out.println(claws);
     }

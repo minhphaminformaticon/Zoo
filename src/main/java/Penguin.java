@@ -20,7 +20,7 @@ public class Penguin extends Animal implements PreyAnimal, SeaAnimal {
     }
 
     @Override
-    public void atributes() {
+    public void attributes() {
         System.out.println(wings);
         System.out.println(beak);
     }

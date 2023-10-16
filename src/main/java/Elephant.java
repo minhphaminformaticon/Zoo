@@ -29,7 +29,7 @@ public class Elephant extends Animal implements PreyAnimal {
     }
 
     @Override
-    public void atributes() {
+    public void attributes() {
         System.out.println(tusk);
         System.out.println(trunk);
     }

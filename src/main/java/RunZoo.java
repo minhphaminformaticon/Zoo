@@ -43,7 +43,7 @@ public class RunZoo {
                 System.out.println("✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮");
                 animal.makeSound();
                 animal.action();
-                animal.atributes();
+                animal.attributes();
                 System.out.println("✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮");
                 System.out.println("--------------------------------------");
             }

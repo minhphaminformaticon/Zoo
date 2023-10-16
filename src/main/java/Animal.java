@@ -32,7 +32,7 @@
         }
         public abstract void action();
 
-        public abstract void atributes();
+        public abstract void attributes();
 
         public int getHealth(){
             return health;
