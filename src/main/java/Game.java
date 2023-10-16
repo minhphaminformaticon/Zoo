@@ -43,6 +43,8 @@ public class Game {
 
         game.fight(selectedAnimals[0], selectedAnimals[1]);
         return false;
+
+
     }
     public void attack(Animal animal1, Animal animal2){
         this.animal1 = animal1;
@@ -109,6 +111,16 @@ public class Game {
             System.out.println(animal2.name + " healed for " + actualHeal + " health.");
         }
     }
+    public void endGame(Animal animal1, Animal animal2) {
+        System.out.println("Game Over!");
+        if (animal1.health <= 0 && animal2.health <= 0) {
+            System.out.println("It's a draw! Both animals have fainted.");
+        } else if (animal1.health <= 0) {
+            System.out.println(animal2.getName() + " wins!");
+        } else {
+            System.out.println(animal1.getName() + " wins!");
+        }
+    }
 
     public void fight(Animal animal1, Animal animal2){
         boolean isTurn = true;
@@ -126,8 +138,8 @@ public class Game {
                     System.out.println("1. attack");
                     System.out.println("2. heal");
                     System.out.println();
-                    System.out.println(maxHealth);
-                    System.out.println("HP: " + animal1.health);
+                    System.out.println("Max HP: " + maxHealth);
+                    System.out.println("Current HP: " + animal1.health);
                     System.out.println("Strength: " + animal1.strength);
                     System.out.println("Defense: " + animal1.defense);
                     System.out.println();
@@ -147,8 +159,8 @@ public class Game {
                     System.out.println("1. attack");
                     System.out.println("2. heal");
                     System.out.println();
-                    System.out.println(maxHealth2);
-                    System.out.println("HP: " + animal2.health);
+                    System.out.println("Max HP: " + maxHealth2);
+                    System.out.println("Current HP: " + animal2.health);
                     System.out.println("Strength: " + animal2.strength);
                     System.out.println("Defense: " + animal2.defense);
                     System.out.println();
@@ -160,7 +172,12 @@ public class Game {
                     }
                     isTurn = true;
                 }
+                if (animal1.health <= 0 || animal2.health <= 0) {
+                    endGame(animal1, animal2);
+                    return;
+                }
             }
+
         }
     }
 
