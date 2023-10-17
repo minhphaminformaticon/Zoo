@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RunZoo {
-    private List<Animal> animals;
-    private List<Cage> cages;
+    private final List<Animal> animals;
+    private final List<Cage> cages;
 
     public RunZoo() {
         this.animals = new ArrayList<>();

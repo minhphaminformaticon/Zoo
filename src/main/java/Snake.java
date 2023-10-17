@@ -5,11 +5,16 @@ public class Snake extends Animal implements Predator {
 
     String scale = name + " uses the scale to shed its skin";
 
+    String animal = "snake";
+    @Override
+    public String getAnimal() {
+        return animal;
+    }
+
     @Override
     public void makeSound() {
         System.out.println(getName() + " hisses!");
     }
-    String animal = "snake";
 
     @Override
     public void action() {

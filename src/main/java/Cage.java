@@ -23,9 +23,7 @@ public class Cage {
 
         double cageSize = baseCageSize + (additionalSpacePerAnimal * animalsInCage.size());
 
-        double roundOff = (double) Math.round(cageSize * 100) /100;
-
-        return roundOff;
+        return (double) Math.round(cageSize * 100) /100;
     }
     public void displayCageInfo() {
         System.out.println();
