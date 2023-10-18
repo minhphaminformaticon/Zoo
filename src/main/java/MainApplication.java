@@ -8,11 +8,15 @@ public class MainApplication {
         RunZoo zoo = new RunZoo();
         Game game = new Game();
 
-        Lion lion = new Lion("minh", 20, 100, 200, 50);
-        Lion lion1 = new Lion("bob",20, 100, 200, 50);
+        Lion lion = new Lion("minh", 20, 100, 200, 0);
+        Lion lion1 = new Lion("bob",20, 37, 200, 0);
+        Lion lion3 = new Lion("minh2", 20, 100, 200, 0);
+        Lion lion4 = new Lion("bob2",20, 100, 100, 0);
 
         zoo.addAnimal(lion);
         zoo.addAnimal(lion1);
+        zoo.addAnimal(lion3);
+        zoo.addAnimal(lion4);
 
         System.out.println("W E L C O M E  T O  Z O O");
         System.out.println("      /\";;:;;\"\\");

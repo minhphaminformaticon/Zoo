@@ -3,15 +3,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Game {
-    private Animal animal1Or2;
-    private Animal animal1or2;
 
-    int maxHealth;
-    int maxHealth2;
     public boolean mainFunction;
-
-
-
 
     Random countR = new Random();
     public Game(){
@@ -42,7 +35,7 @@ public class Game {
     }
 
     public boolean startGame(List<Animal> zooAnimals) {
-        if (zooAnimals.isEmpty() || zooAnimals.size() < 2) {
+        if (zooAnimals.isEmpty() || zooAnimals.size() < 4) {
             System.out.println();
             System.out.println("The following condition needs to be fulfilled.");
             System.out.println("You can try again.");
@@ -55,14 +48,24 @@ public class Game {
         do {
             index2 = random.nextInt(zooAnimals.size());
         } while (index2 == index1);
+        int index3;
+        do {
+            index3 = random.nextInt(zooAnimals.size());
+        }while (index3 == index2 || index3 == index1);
+        int index4;
+        do {
+            index4 = random.nextInt(zooAnimals.size());
+        }while (index4 == index1 || index4 == index2 || index4 == index3);
 
-        animal1Or2 = zooAnimals.get(index1);
-        animal1or2 = zooAnimals.get(index2);
+        Animal animal1Or2 = zooAnimals.get(index1);
+        Animal animal1or2 = zooAnimals.get(index2);
+        Animal benchedAnimals = zooAnimals.get(index3);
+        Animal benchedAnimals2 = zooAnimals.get(index4);
 
-        Animal[] selectedAnimals = new Animal[]{animal1Or2, animal1or2};
+        Animal[] selectedAnimals = new Animal[]{animal1Or2, animal1or2, benchedAnimals, benchedAnimals2};
         System.out.println("Battle: " + selectedAnimals[0].getName() + " vs " + selectedAnimals[1].getName());
 
-        fight(selectedAnimals[0], selectedAnimals[1]);
+        fight(selectedAnimals[0], selectedAnimals[1], selectedAnimals[2], selectedAnimals[3]);
         return false;
     }
     public void attack(Animal attacker, Animal defender){
@@ -81,15 +84,14 @@ public class Game {
         System.out.println("health: " + defender.health);
     }
     public void newheal(Animal animal1Or2){
-
-        System.out.println(maxHealth);
+        System.out.println(animal1Or2.maxHealth);
         System.out.println(animal1Or2.health);
         int heal = 20;
-        if(maxHealth <= animal1Or2.health){
+        if(animal1Or2.maxHealth <= animal1Or2.health){
             System.out.println("You can't heal because your health has already reached its max!");
             return;
         }else {
-            int newHealth = Math.min(maxHealth, animal1Or2.health + heal);
+            int newHealth = Math.min(animal1Or2.maxHealth, animal1Or2.health + heal);
             int actualHeal = newHealth - animal1Or2.health;
             animal1Or2.health = newHealth;
             System.out.println(animal1Or2.name + " healed for " + actualHeal + " health.");
@@ -110,42 +112,90 @@ public class Game {
 
         System.out.println(animal1Or2.name + " has its strength increased to " + currentStrength);
     }
+    public void switchAnimal(Animal oldAnimal, Animal newAnimal){
+       int switchedStrength;
+       int switchedHealth;
+       int switchedDefense;
+       int switchedMaxHealth;
+       String switchedName;
 
-    public void endGame(Animal animal1, Animal animal2) {
+       switchedStrength = oldAnimal.strength;
+       switchedHealth = oldAnimal.health;
+       switchedDefense = oldAnimal.defense;
+
+       oldAnimal.strength = newAnimal.strength;
+       oldAnimal.health = newAnimal.health;
+       oldAnimal.defense = newAnimal.defense;
+
+       newAnimal.strength = switchedStrength;
+       newAnimal.health = switchedHealth;
+       newAnimal.defense = switchedDefense;
+
+       System.out.println(oldAnimal.name + " has been switched with " + newAnimal.name);
+       switchedName = oldAnimal.name;
+       oldAnimal.name = newAnimal.name;
+       newAnimal.name = switchedName;
+
+       switchedMaxHealth = oldAnimal.maxHealth;
+       oldAnimal.maxHealth = newAnimal.maxHealth;
+       newAnimal.maxHealth = switchedMaxHealth;
+
+    }
+
+    public void endGame(Animal animal1, Animal animal2, Animal animal3, Animal animal4) {
         System.out.println();
         System.out.println("Game Over!");
-        if (animal1.health <= 0 && animal2.health <= 0) {
-            System.out.println("It's a draw! Both animals have fainted.");
-        } else if (animal1.health <= 0) {
-            System.out.println(animal2.getName() + " wins!");
+        if (animal1.health <= 0 && animal3.health <= 0) {
+            System.out.println(animal2.name + " and " + animal4.name + " wins!");
         } else {
-            System.out.println(animal1.getName() + " wins!");
+            System.out.println(animal1.name + " and " + animal3.name + " wins!");
         }
     }
+    public void drawHealthBar(Animal animal) {
+        int barLength = 20;
+        double healthBarFill = ((double) animal.health / animal.maxHealth) * barLength;
+
+        System.out.print("Health: [");
+
+        for (int i = 0; i < barLength; i++) {
+            if (i < healthBarFill) {
+                System.out.print("\uD83D\uDFE5");
+            } else {
+                System.out.print(" ");
+            }
+        }
+
+        System.out.print("] ");
+    }
+    public void animalFainted(Animal animalFainted, Animal benchedAnimal){
+        System.out.println();
+        System.out.println(animalFainted.name + " has been fainted!");
+        System.out.println();
+        switchAnimal(animalFainted, benchedAnimal);
+    }
+    public void displayAnimalStats(Animal animal){
+        System.out.println(animal.getIcon());
+        System.out.println("Your Animal: " + animal.name + " stats: ");
+        System.out.println(animal.health + "/"  + animal.maxHealth + " ⚔\uFE0F: " + animal.strength + " \uD83D\uDEE1\uFE0F: " + animal.defense + " \uD83D\uDE36\u200D\uD83C\uDF2B\uFE0F: " + animal.counter);
+    }
     public void battleAction(Animal attacker, Animal defender){
-        System.out.println();
         System.out.println("--------------------------------------");
-        System.out.println(attacker.name + " stats: ");
-        System.out.println("Max HP: " + maxHealth);
-        System.out.println("Current HP: " + attacker.health);
-        System.out.println("Strength: " + attacker.strength);
-        System.out.println("Defense: " + attacker.defense);
-        System.out.println("Counter for smokes: " + attacker.counter);
+        displayAnimalStats(attacker);
+        drawHealthBar(attacker);
         System.out.println();
-        System.out.println(defender.name + " stats: ");
-        System.out.println("Max HP: " + maxHealth);
-        System.out.println("Current HP: " + defender.health);
-        System.out.println("Strength: " + defender.strength);
-        System.out.println("Defense: " + defender.defense);
-        System.out.println("Counter for smokes: " + defender.counter);
+        System.out.println();
+        displayAnimalStats(defender);
+        drawHealthBar(defender);
+        System.out.println();
         System.out.println();
     }
-    public void fightInput(Animal attacker, Animal defender){
+    public void fightInput(Animal attacker, Animal defender, Animal benchedAnimal){
         System.out.println("choose 1 option for " + attacker.name);
         System.out.println("1. attack");
         System.out.println("2. heal");
         System.out.println("3. power up");
         System.out.println("4. set smokes");
+        System.out.println("5. switch animals");
         System.out.println();
         Scanner inputGame = new Scanner(System.in);
         int actionGame;
@@ -155,32 +205,41 @@ public class Game {
             case 2 -> newheal(attacker);
             case 3 -> newPowerUp(attacker);
             case 4 -> newIncreaseCounterForSmokesScreen(attacker);
+            case 5 -> switchAnimal(attacker, benchedAnimal);
             default -> System.out.println("Invalid choice. Please try again.");
         }
 
     }
-    public void fight(Animal animal1, Animal animal2) {
+    public void fight(Animal animal1, Animal animal2, Animal animal3, Animal animal4) {
         boolean isTurnAnimal1 = true;
             if (animal1 == null || animal2 == null) {
                 return;
             } else {
-                maxHealth = animal1.getHealth();
-                maxHealth2 = animal2.getHealth();
+                animal1.maxHealth = animal1.getHealth();
+                animal2.maxHealth = animal2.getHealth();
+                animal3.maxHealth = animal3.getHealth();
+                animal4.maxHealth = animal4.getHealth();
                 while (animal1.health > 0 || animal2.health > 0) {
                     if (isTurnAnimal1) {
                         battleAction(animal1, animal2);
-                        fightInput(animal1, animal2);
+                        fightInput(animal1, animal2, animal3);
                         isTurnAnimal1 = false;
                     } else {
                         battleAction(animal2, animal1);
-                        fightInput(animal2, animal1);
+                        fightInput(animal2, animal1, animal4);
                         isTurnAnimal1 = true;
                     }
-                    if (animal1.health <= 0 || animal2.health <= 0) {
-                        endGame(animal1, animal2);
+                    if ((animal1.health <= 0 && animal3.health <= 0)||(animal2.health <= 0 && animal4.health <= 0)) {
+                        endGame(animal1, animal2, animal3, animal4);
                         return;
-                    }
+                    } else if (animal1.health <= 0) {
+                        animalFainted(animal1, animal3);
+                        isTurnAnimal1 = false;
+                    }else if (animal2.health <= 0) {
+                        animalFainted(animal2, animal4);
+                        isTurnAnimal1 = true;
                 }
             }
+        }
     }
 }

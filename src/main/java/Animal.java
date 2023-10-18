@@ -8,7 +8,7 @@
         int strength;
 
         int counter;
-
+        int maxHealth = health;
         int defense;
         public Animal(String name, int age, int strength, int health, int defense) {
             this.name = name;
@@ -21,6 +21,10 @@
 
         public int getCounter() {
             return counter;
+        }
+
+        public int getMaxHealth() {
+            return maxHealth;
         }
 
         public abstract void makeSound();
