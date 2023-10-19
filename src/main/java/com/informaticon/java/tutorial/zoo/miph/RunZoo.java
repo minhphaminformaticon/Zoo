@@ -1,7 +1,10 @@
+package com.informaticon.java.tutorial.zoo.miph;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class RunZoo {
+
     private final List<Animal> animals;
     private final List<Cage> cages;
 
@@ -21,16 +24,17 @@ public class RunZoo {
         }
         Cage newCage = new Cage(animal.getAnimal());
         newCage.addAnimal(animal);
+
         cages.add(newCage);
     }
 
 
-    public void displayAnimals(){
+    public void displayAnimals() {
         if (animals.isEmpty()) {
             System.out.println();
-            System.out.println("There are no animals in the zoo!");
+            System.out.println("There are no zoo.animals in the zoo!");
             System.out.println();
-        }else {
+        } else {
             for (Cage cage : cages) {
                 cage.displayCageInfo();
 

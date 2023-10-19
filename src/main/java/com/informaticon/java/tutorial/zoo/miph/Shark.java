@@ -1,12 +1,18 @@
+package com.informaticon.java.tutorial.zoo.miph;
+
 public class Shark extends Animal implements Predator, SeaAnimal {
+
     public Shark(String name, int age, int strength, int health, int defense) {
         super(name, age, strength, health, defense);
+        setIcon("✩\uD83E\uDD88✮");
     }
 
     String fin = "the big scary " + name + " uses its fins to swim in the deep.";
     String kingOfTheSea = "The shark is the king of the deep.";
 
+    
     String animal = "shark";
+
     @Override
     public void makeSound() {
         System.out.println(getName() + " makes underwater noises.");
@@ -47,13 +53,10 @@ public class Shark extends Animal implements Predator, SeaAnimal {
         System.out.println(getName() + " eats fish.");
     }
 
-    @Override
-    public String getIcon() {
-        icon = "✩\uD83E\uDD88✮";
-        return icon;
-    }
+
     @Override
     public String getAnimal() {
         return animal;
     }
+
 }

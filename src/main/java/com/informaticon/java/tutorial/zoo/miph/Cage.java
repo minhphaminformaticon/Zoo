@@ -1,3 +1,5 @@
+package com.informaticon.java.tutorial.zoo.miph;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +29,8 @@ public class Cage {
     }
     public void displayCageInfo() {
         System.out.println();
-        System.out.println("Cage for " + animalType + ":");
-        System.out.println("Number of animals: " + getCageSpace());
+        System.out.println("zoo.Cage for " + animalType + ":");
+        System.out.println("Number of zoo.animals: " + getCageSpace());
         System.out.println("Size:" + getCageSize() + " m2");
     }
 

@@ -1,6 +1,9 @@
+package com.informaticon.java.tutorial.zoo.miph;
+
 public class Penguin extends Animal implements PreyAnimal, SeaAnimal {
     public Penguin(String name, int age, int strength, int health, int defense) {
         super(name, age, strength, health, defense);
+        setIcon("✩\uD83D\uDC27✮");
     }
 
     String wings = name + " uses the wings to swim underwater.";
@@ -39,11 +42,7 @@ public class Penguin extends Animal implements PreyAnimal, SeaAnimal {
     public void eatPlants() {
         System.out.println();
     }
-    @Override
-    public String getIcon() {
-        icon = "✩\uD83D\uDC27✮";
-        return super.getIcon();
-    }
+
 
     @Override
     public String getAnimal() {

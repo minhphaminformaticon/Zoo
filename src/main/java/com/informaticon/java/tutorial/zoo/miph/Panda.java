@@ -1,15 +1,21 @@
-public class Panda extends Animal implements PreyAnimal{
+package com.informaticon.java.tutorial.zoo.miph;
+
+public class Panda extends Animal implements PreyAnimal {
 
     public Panda(String name, int age, int strength, int health, int defense) {
         super(name, age, strength, health, defense);
+        setIcon("✩\uD83D\uDC3C✮");
     }
+
     String cuteEyes = getName() + " has super cute eyes.";
 
     String animal = "panda";
 
+    String icon = "✩\uD83D\uDC3C✮";
+
     @Override
     public void makeSound() {
-        System.out.println(getName() + " growls!" );
+        System.out.println(getName() + " growls!");
     }
 
     @Override
@@ -27,11 +33,6 @@ public class Panda extends Animal implements PreyAnimal{
         System.out.println(getName() + " eats bamboos everyday.");
     }
 
-    @Override
-    public String getIcon() {
-        icon = "✩\uD83D\uDC3C✮";
-        return super.getIcon();
-    }
 
     @Override
     public String getAnimal() {

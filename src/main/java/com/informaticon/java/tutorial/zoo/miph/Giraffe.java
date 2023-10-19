@@ -1,11 +1,16 @@
-public class Giraffe extends Animal implements PreyAnimal{
+package com.informaticon.java.tutorial.zoo.miph;
+
+public class Giraffe extends Animal implements PreyAnimal {
 
     public Giraffe(String name, int age, int strength, int health, int defense) {
         super(name, age, strength, health, defense);
+        setIcon("✩\uD83E\uDD92✮");
     }
+
     String animal = "giraffe";
 
     String longNeck = getName() + " has a long neck";
+
     @Override
     public void makeSound() {
         System.out.println("it doesnt make any sounds.");
@@ -26,11 +31,6 @@ public class Giraffe extends Animal implements PreyAnimal{
         System.out.println(getName() + " eats plants-");
     }
 
-    @Override
-    public String getIcon() {
-        icon = "✩\uD83E\uDD92✮";
-        return icon;
-    }
 
     @Override
     public String getAnimal() {

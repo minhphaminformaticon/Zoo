@@ -1,12 +1,19 @@
-public class Crocodile extends Animal implements Predator{
+package com.informaticon.java.tutorial.zoo.miph;
+
+public class Crocodile extends Animal implements Predator {
     public Crocodile(String name, int age, int strength, int health, int defense) {
         super(name, age, strength, health, defense);
+        setIcon(getIcon());
     }
+
     String claws = "With its sharp claws on all fours, it stalks its prey underwater.";
 
     String scale = getName() + " uses its scales to protect itself.";
 
     String animal = "crocodile";
+
+    String icon = "✩\uD83E\uDD88✮";
+
     @Override
     public void makeSound() {
         System.out.println(getName() + " has a deep growl.");
@@ -14,7 +21,7 @@ public class Crocodile extends Animal implements Predator{
 
     @Override
     public void action() {
-        System.out.println( getName() + ", the crocodile, a stealthy reptile with massive jaws.");
+        System.out.println(getName() + ", the crocodile, a stealthy reptile with massive jaws.");
     }
 
     @Override
@@ -33,11 +40,6 @@ public class Crocodile extends Animal implements Predator{
         System.out.println(getName() + "eats meat");
     }
 
-    @Override
-    public String getIcon() {
-        icon = "✩\uD83E\uDD92✮";
-        return icon;
-    }
 
     @Override
     public String getAnimal() {

@@ -1,3 +1,4 @@
+package com.informaticon.java.tutorial.zoo.miph;
 
 import java.util.Scanner;
 
@@ -8,16 +9,28 @@ public class MainApplication {
         RunZoo zoo = new RunZoo();
         Game game = new Game();
 
-        Lion lion = new Lion("minh", 20, 100, 200, 0);
-        Lion lion1 = new Lion("bob",20, 37, 200, 0);
-        Lion lion3 = new Lion("minh2", 20, 100, 200, 0);
-        Lion lion4 = new Lion("bob2",20, 100, 100, 0);
+        Lion lion = new Lion("lion minh", 20, 100, 200, 50);
+        Tiger tiger = new Tiger("tiger minh", 20, 100, 200, 50);
+        Shark shark = new Shark("shark minh", 20, 100, 200, 50);
+        Elephant elephant = new Elephant("elephant minh", 20, 100, 200, 50);
+        Snake snake = new Snake("snake minh", 20, 100, 200, 50);
+        Gorilla gorilla = new Gorilla("gorilla minh", 20, 100, 200, 50);
+        Giraffe giraffe = new Giraffe("giraffe minh", 20, 100, 200, 50);
+        Zebra zebra = new Zebra("zebra minh", 20, 100, 200, 50);
+        Panda panda = new Panda("panda minh", 20, 100, 200, 50);
+        Penguin penguin = new Penguin("penguin minh", 20, 100, 200, 50);
 
         zoo.addAnimal(lion);
-        zoo.addAnimal(lion1);
-        zoo.addAnimal(lion3);
-        zoo.addAnimal(lion4);
-
+        zoo.addAnimal(tiger);
+        zoo.addAnimal(shark);
+        zoo.addAnimal(elephant);
+        zoo.addAnimal(snake);
+        zoo.addAnimal(gorilla);
+        zoo.addAnimal(giraffe);
+        zoo.addAnimal(zebra);
+        zoo.addAnimal(panda);
+        zoo.addAnimal(penguin);
+        
         System.out.println("W E L C O M E  T O  Z O O");
         System.out.println("      /\";;:;;\"\\");
         System.out.println("    (:;/\\,-,/\\;;");
@@ -31,8 +44,8 @@ public class MainApplication {
         while (mainFunction) {
             System.out.println();
             System.out.println("1. Add an animal to the zoo");
-            System.out.println("2. Display animals in the zoo");
-            System.out.println("3. Animal Battle");
+            System.out.println("2. Display zoo.animals in the zoo");
+            System.out.println("3. zoo.Animal Battle");
             System.out.println("4. Exit");
             System.out.print("Choose an option: ");
 
@@ -45,7 +58,7 @@ public class MainApplication {
                 case 3 -> {
                     mainFunction = game.startGame((zoo.getAnimals()));
                 }
-                case 4-> {
+                case 4 -> {
                     System.out.println("Exiting program.");
                     scanner.close();
                     System.exit(0);
@@ -82,17 +95,17 @@ public class MainApplication {
         } while (defense < 10 || defense > 100);
 
         System.out.println("Select the animal type:");
-        System.out.println("1. Lion");
-        System.out.println("2. Elephant");
-        System.out.println("3. Shark");
-        System.out.println("4. Gorilla");
-        System.out.println("5. Snake");
-        System.out.println("6. Penguin");
-        System.out.println("7. Tiger");
-        System.out.println("8. Crocodile");
-        System.out.println("9. Giraffe");
-        System.out.println("10. Zebra");
-        System.out.println("11. Panda");
+        System.out.println("1. zoo.Lion");
+        System.out.println("2. zoo.Elephant");
+        System.out.println("3. zoo.Shark");
+        System.out.println("4. zoo.Gorilla");
+        System.out.println("5. zoo.Snake");
+        System.out.println("6. zoo.Penguin");
+        System.out.println("7. zoo.Tiger");
+        System.out.println("8. zoo.Crocodile");
+        System.out.println("9. zoo.Giraffe");
+        System.out.println("10. zoo.Zebra");
+        System.out.println("11. zoo.Panda");
         System.out.println();
         int animalChoice = scanner.nextInt();
         scanner.nextLine();
@@ -111,7 +124,7 @@ public class MainApplication {
             case 10 -> animal = new Zebra(name, age, strength, health, defense);
             case 11 -> animal = new Panda(name, age, strength, health, defense);
             default -> {
-                System.out.println("Invalid choice. Animal not added to the zoo.");
+                System.out.println("Invalid choice. zoo.Animal not added to the zoo.");
                 return;
             }
         }
