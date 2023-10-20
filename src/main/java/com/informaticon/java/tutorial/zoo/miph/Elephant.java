@@ -1,15 +1,14 @@
 package com.informaticon.java.tutorial.zoo.miph;
 
 public class Elephant extends Animal implements PreyAnimal {
-    public Elephant(String name, int age, int strength, int health, int defense) {
-        super(name, age, strength, health, defense);
+    public Elephant(String name, int age, int strength, int health, int defense, int speed) {
+        super(name, age, strength, health, defense, speed);
         setIcon("✩\uD83D\uDC18✮");
+        setAnimal("elephant");
     }
 
-    String tusk = "the mighty " + name + " has big tusks.";
+    String tusk = "the mighty " + getName() + " has big tusks.";
     String trunk = "the elephant's trunk is used for eating, gripping or drinking.";
-
-    String animal = "elephant";
 
 
     @Override
@@ -31,10 +30,5 @@ public class Elephant extends Animal implements PreyAnimal {
     public void attributes() {
         System.out.println(tusk);
         System.out.println(trunk);
-    }
-
-    @Override
-    public String getAnimal() {
-        return animal;
     }
 }

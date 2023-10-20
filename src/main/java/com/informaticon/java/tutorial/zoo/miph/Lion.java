@@ -1,38 +1,14 @@
 package com.informaticon.java.tutorial.zoo.miph;
 
 public class Lion extends Animal implements Predator {
-    String mane = name + " has majestic golden mane";
+    String mane = getName() + " has majestic golden mane";
 
-    public Lion(String name, int age, int strength, int health, int defense) {
-        super(name, age, strength, health, defense);
+    public Lion(String name, int age, int strength, int health, int defense, int speed) {
+        super(name, age, strength, health, defense, speed);
         setIcon("✩🦁✮");
+        setAnimal("lion");
     }
 
-    String animal = "lion";
-
-    int strength = 20;
-
-    int defense = 10;
-    String icon = "✩\uD83E\uDD81✮";
-
-    public Lion() {
-        super();
-    }
-
-    @Override
-    public int getStrength() {
-        return strength;
-    }
-
-    @Override
-    public int getHealth() {
-        return health;
-    }
-
-    @Override
-    public int getDefense() {
-        return defense;
-    }
 
     @Override
     public void makeSound() {
@@ -60,9 +36,6 @@ public class Lion extends Animal implements Predator {
     public void attributes() {
         System.out.println(mane);
     }
-
-    @Override
-    public String getAnimal() {
-        return animal;
-    }
 }
+
+

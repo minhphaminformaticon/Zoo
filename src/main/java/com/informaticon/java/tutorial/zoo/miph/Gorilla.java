@@ -1,14 +1,13 @@
 package com.informaticon.java.tutorial.zoo.miph;
 
 public class Gorilla extends Animal implements PreyAnimal {
-    public Gorilla(String name, int age, int strength, int health, int defense) {
-        super(name, age, strength, health, defense);
+    public Gorilla(String name, int age, int strength, int health, int defense, int speed) {
+        super(name, age, strength, health, defense, speed);
         setIcon("✩\uD83E\uDD8D✮");
+        setAnimal("gorilla");
     }
 
-    String animal = "gorilla";
-
-    String bigArms = name + " has big enormous arms to climb trees.";
+    String bigArms = getName() + " has big enormous arms to climb trees.";
 
     @Override
     public void makeSound() {
@@ -28,11 +27,5 @@ public class Gorilla extends Animal implements PreyAnimal {
     @Override
     public void eatPlants() {
         System.out.println(getName() + " eats plants.");
-    }
-
-
-    @Override
-    public String getAnimal() {
-        return animal;
     }
 }

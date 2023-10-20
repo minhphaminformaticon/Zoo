@@ -2,12 +2,12 @@ package com.informaticon.java.tutorial.zoo.miph;
 
 public class Giraffe extends Animal implements PreyAnimal {
 
-    public Giraffe(String name, int age, int strength, int health, int defense) {
-        super(name, age, strength, health, defense);
+    public Giraffe(String name, int age, int strength, int health, int defense, int speed) {
+        super(name, age, strength, health, defense, speed);
         setIcon("✩\uD83E\uDD92✮");
+        setAnimal("giraffe");
     }
 
-    String animal = "giraffe";
 
     String longNeck = getName() + " has a long neck";
 
@@ -32,8 +32,4 @@ public class Giraffe extends Animal implements PreyAnimal {
     }
 
 
-    @Override
-    public String getAnimal() {
-        return animal;
-    }
 }

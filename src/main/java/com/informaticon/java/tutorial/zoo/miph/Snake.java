@@ -1,20 +1,14 @@
 package com.informaticon.java.tutorial.zoo.miph;
 
 public class Snake extends Animal implements Predator {
-    public Snake(String name, int age, int strength, int health, int defense) {
-        super(name, age, strength, health, defense);
+    public Snake(String name, int age, int strength, int health, int defense, int speed) {
+        super(name, age, strength, health, defense, speed);
         setIcon("✩\uD83D\uDC0D✮");
+        setAnimal("snake");
     }
 
-    String scale = name + " uses the scale to shed its skin";
+    String scale = getName() + " uses the scale to shed its skin";
 
-    String animal = "snake";
-    
-
-    @Override
-    public String getAnimal() {
-        return animal;
-    }
 
     @Override
     public void makeSound() {

@@ -6,10 +6,10 @@ import com.informaticon.java.tutorial.zoo.miph.Shark;
 public class ClassInPackage {
 
     public static void main(String[] args) {
-        Lion lion = new Lion("test", 22, 100, 100, 100);
+        Lion lion = new Lion("test", 22, 100, 100, 100, 20);
         String name = lion.getName();
 
-        Shark shark = new Shark("test", 22, 100, 100, 100);
+        Shark shark = new Shark("test", 22, 100, 100, 100, 20);
         shark.swim();
 
     }
