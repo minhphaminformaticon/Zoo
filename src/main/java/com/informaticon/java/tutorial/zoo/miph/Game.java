@@ -114,6 +114,8 @@ public class Game {
             defender.setHealth(defender.getHealth() + dmgTaken);
             dmgOutput = Math.abs(dmgTaken);
         }
+        attacker.setStrength(attacker.getOriginalStrength());
+        defender.setDefense(defender.getOriginalDefense());
         System.out.println(attacker.getName() + " inflicts " + dmgOutput + " dmg to " + defender.getName());
         System.out.println("health: " + defender.getHealth());
     }
@@ -194,6 +196,13 @@ public class Game {
         int switchedMaxHealth = oldAnimal.getMaxHealth();
         oldAnimal.setMaxHealth(newAnimal.getMaxHealth());
         newAnimal.setMaxHealth(switchedMaxHealth);
+        int switchedOriginalStrength = oldAnimal.getOriginalStrength();
+        oldAnimal.setOriginalStrength(newAnimal.getOriginalStrength());
+        newAnimal.setOriginalStrength(switchedOriginalStrength);
+        int switchedOriginalDefense = oldAnimal.getOriginalDefense();
+        oldAnimal.setOriginalDefense(newAnimal.getOriginalDefense());
+        newAnimal.setOriginalDefense(switchedOriginalDefense);
+
     }
 
 
@@ -368,7 +377,14 @@ public class Game {
             animal2.setMaxHealth(animal2.getHealth());
             animal3.setMaxHealth(animal3.getHealth());
             animal4.setMaxHealth(animal4.getHealth());
-
+            animal1.setOriginalStrength(animal1.getStrength());
+            animal2.setOriginalStrength(animal2.getStrength());
+            animal3.setOriginalStrength(animal3.getStrength());
+            animal4.setOriginalStrength(animal4.getStrength());
+            animal1.setOriginalDefense(animal1.getDefense());
+            animal2.setOriginalDefense(animal2.getDefense());
+            animal3.setOriginalDefense(animal3.getDefense());
+            animal4.setOriginalDefense(animal4.getDefense());
 
             while (animal1.getHealth() > 0 || animal2.getHealth() > 0) {
                 if (isTurnAnimal1) {

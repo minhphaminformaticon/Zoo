@@ -24,7 +24,9 @@ public abstract class Animal {
 
     private int counter;
     private int maxHealth = health;
+    private int originalStrength = strength;
     private int defense;
+    private int originalDefense = defense;
     private int speed;
     private int actionChoice = 0;
 
@@ -80,6 +82,14 @@ public abstract class Animal {
         return speed;
     }
 
+    public int getOriginalStrength() {
+        return originalStrength;
+    }
+
+    public int getOriginalDefense() {
+        return originalDefense;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -122,5 +132,13 @@ public abstract class Animal {
 
     public void setActionChoice(int actionChoice) {
         this.actionChoice = actionChoice;
+    }
+
+    public void setOriginalStrength(int originalStrength) {
+        this.originalStrength = originalStrength;
+    }
+
+    public void setOriginalDefense(int originalDefense) {
+        this.originalDefense = originalDefense;
     }
 }
