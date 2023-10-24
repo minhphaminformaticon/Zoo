@@ -174,6 +174,9 @@ public class Game {
         int switchedHealth = oldAnimal.getHealth();
         int switchedDefense = oldAnimal.getDefense();
         int switchedSpeed = oldAnimal.getSpeed();
+        int switchedMaxHealth = oldAnimal.getMaxHealth();
+        int switchedOriginalStrength = oldAnimal.getOriginalStrength();
+        int switchedOriginalDefense = oldAnimal.getOriginalDefense();
         String switchedName = oldAnimal.getName();
         String switchedIcon = oldAnimal.getIcon();
 
@@ -182,27 +185,23 @@ public class Game {
         oldAnimal.setDefense(newAnimal.getDefense());
         oldAnimal.setSpeed(newAnimal.getSpeed());
         oldAnimal.setIcon(newAnimal.getIcon());
+        oldAnimal.setMaxHealth(newAnimal.getMaxHealth());
+        oldAnimal.setOriginalStrength(newAnimal.getOriginalStrength());
+        oldAnimal.setOriginalDefense(newAnimal.getOriginalDefense());
 
         newAnimal.setStrength(switchedStrength);
         newAnimal.setHealth(switchedHealth);
         newAnimal.setDefense(switchedDefense);
         newAnimal.setSpeed(switchedSpeed);
         newAnimal.setIcon(switchedIcon);
+        newAnimal.setMaxHealth(switchedMaxHealth);
+        newAnimal.setOriginalStrength(switchedOriginalStrength);
+        newAnimal.setOriginalDefense(switchedOriginalDefense);
+
 
         System.out.println(oldAnimal.getName() + " has been switched with " + newAnimal.getName());
         oldAnimal.setName(newAnimal.getName());
         newAnimal.setName(switchedName);
-
-        int switchedMaxHealth = oldAnimal.getMaxHealth();
-        oldAnimal.setMaxHealth(newAnimal.getMaxHealth());
-        newAnimal.setMaxHealth(switchedMaxHealth);
-        int switchedOriginalStrength = oldAnimal.getOriginalStrength();
-        oldAnimal.setOriginalStrength(newAnimal.getOriginalStrength());
-        newAnimal.setOriginalStrength(switchedOriginalStrength);
-        int switchedOriginalDefense = oldAnimal.getOriginalDefense();
-        oldAnimal.setOriginalDefense(newAnimal.getOriginalDefense());
-        newAnimal.setOriginalDefense(switchedOriginalDefense);
-
     }
 
 
