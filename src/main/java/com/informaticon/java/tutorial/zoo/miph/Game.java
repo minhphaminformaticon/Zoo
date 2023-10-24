@@ -90,7 +90,9 @@ public class Game {
         Animal benchedAnimals2 = zooAnimals.get(index4);
 
         Animal[] selectedAnimals = new Animal[]{animal1Or2, animal1or2, benchedAnimals, benchedAnimals2};
-        System.out.println("Battle: " + selectedAnimals[0].getName() + " & " + selectedAnimals[2].getName() + " vs " + selectedAnimals[1].getName() + " & " + selectedAnimals[3].getName());
+        System.out.println("Battle: " + ANSI_BLUE + selectedAnimals[0].getName() + " & " + selectedAnimals[2].getName()
+                + ANSI_RESET + " vs " + ANSI_RED + selectedAnimals[1].getName() + " & " + selectedAnimals[3].getName()
+                + ANSI_RESET);
 
         team1Active = selectedAnimals[0];
         team1Benched = selectedAnimals[2];
@@ -116,11 +118,12 @@ public class Game {
         }
         attacker.setStrength(attacker.getOriginalStrength());
         defender.setDefense(defender.getOriginalDefense());
-        System.out.println(attacker.getName() + " inflicts " + dmgOutput + " dmg to " + defender.getName());
+        System.out.println(ANSI_RED + attacker.getName() + " inflicts " + dmgOutput + " dmg to " + defender.getName() +
+                ANSI_RESET);
         System.out.println("health: " + defender.getHealth());
     }
 
-    public void newheal(Animal animal1Or2) {
+    public void newHeal(Animal animal1Or2) {
         Random random = new Random();
         System.out.println(animal1Or2.getMaxHealth());
         System.out.println(animal1Or2.getHealth());
@@ -260,7 +263,7 @@ public class Game {
         if (animalTeam1Active.getSpeed() > animalTeam2Active.getSpeed()) {
             switch (animalTeam1Active.getActionChoice()) {
                 case 1 -> executeSmokesBasedOnPercentage(animalTeam1Active, animalTeam2Active);
-                case 2 -> newheal(animalTeam1Active);
+                case 2 -> newHeal(animalTeam1Active);
                 case 3 -> newPowerUp(animalTeam1Active);
                 case 4 -> newDefenseUp(animalTeam1Active);
                 case 5 -> newIncreaseCounterForSmokesScreen(animalTeam1Active);
@@ -268,16 +271,16 @@ public class Game {
             }
             switch (animalTeam2Active.getActionChoice()) {
                 case 1 -> executeSmokesBasedOnPercentage(animalTeam2Active, animalTeam1Active);
-                case 2 -> newheal(animalTeam2Active);
+                case 2 -> newHeal(animalTeam2Active);
                 case 3 -> newPowerUp(animalTeam2Active);
                 case 4 -> newDefenseUp(animalTeam2Active);
-                case 5 -> newIncreaseCounterForSmokesScreen(animalTeam1Active);
+                case 5 -> newIncreaseCounterForSmokesScreen(animalTeam2Active);
                 case 6 -> switchAnimal(animalTeam2Active, animalTeam2benched);
             }
         } else if (animalTeam1Active.getSpeed() < animalTeam2Active.getSpeed()) {
             switch (animalTeam2Active.getActionChoice()) {
                 case 1 -> executeSmokesBasedOnPercentage(animalTeam2Active, animalTeam1Active);
-                case 2 -> newheal(animalTeam2Active);
+                case 2 -> newHeal(animalTeam2Active);
                 case 3 -> newPowerUp(animalTeam2Active);
                 case 4 -> newDefenseUp(animalTeam2Active);
                 case 5 -> newIncreaseCounterForSmokesScreen(animalTeam1Active);
@@ -285,10 +288,10 @@ public class Game {
             }
             switch (animalTeam1Active.getActionChoice()) {
                 case 1 -> executeSmokesBasedOnPercentage(animalTeam1Active, animalTeam2Active);
-                case 2 -> newheal(animalTeam1Active);
+                case 2 -> newHeal(animalTeam1Active);
                 case 3 -> newPowerUp(animalTeam1Active);
                 case 4 -> newDefenseUp(animalTeam1Active);
-                case 5 -> newIncreaseCounterForSmokesScreen(animalTeam1Active);
+                case 5 -> newIncreaseCounterForSmokesScreen(animalTeam2Active);
                 case 6 -> switchAnimal(animalTeam1Active, animalTeam1benched);
             }
         } else if (animalTeam1Active.getSpeed() == animalTeam2Active.getSpeed()) {
@@ -299,7 +302,7 @@ public class Game {
             if (randomChoice == 0) {
                 switch (animalTeam1Active.getActionChoice()) {
                     case 1 -> executeSmokesBasedOnPercentage(animalTeam1Active, animalTeam2Active);
-                    case 2 -> newheal(animalTeam1Active);
+                    case 2 -> newHeal(animalTeam1Active);
                     case 3 -> newPowerUp(animalTeam1Active);
                     case 4 -> newDefenseUp(animalTeam1Active);
                     case 5 -> newIncreaseCounterForSmokesScreen(animalTeam1Active);
@@ -307,16 +310,16 @@ public class Game {
                 }
                 switch (animalTeam2Active.getActionChoice()) {
                     case 1 -> executeSmokesBasedOnPercentage(animalTeam2Active, animalTeam1Active);
-                    case 2 -> newheal(animalTeam2Active);
+                    case 2 -> newHeal(animalTeam2Active);
                     case 3 -> newPowerUp(animalTeam2Active);
                     case 4 -> newDefenseUp(animalTeam2Active);
-                    case 5 -> newIncreaseCounterForSmokesScreen(animalTeam1Active);
+                    case 5 -> newIncreaseCounterForSmokesScreen(animalTeam2Active);
                     case 6 -> switchAnimal(animalTeam2Active, animalTeam2benched);
                 }
             } else if (randomChoice == 1) {
                 switch (animalTeam2Active.getActionChoice()) {
                     case 1 -> executeSmokesBasedOnPercentage(animalTeam2Active, animalTeam1Active);
-                    case 2 -> newheal(animalTeam2Active);
+                    case 2 -> newHeal(animalTeam2Active);
                     case 3 -> newPowerUp(animalTeam2Active);
                     case 4 -> newDefenseUp(animalTeam2Active);
                     case 5 -> newIncreaseCounterForSmokesScreen(animalTeam1Active);
@@ -324,7 +327,7 @@ public class Game {
                 }
                 switch (animalTeam1Active.getActionChoice()) {
                     case 1 -> executeSmokesBasedOnPercentage(animalTeam1Active, animalTeam2Active);
-                    case 2 -> newheal(animalTeam1Active);
+                    case 2 -> newHeal(animalTeam1Active);
                     case 3 -> newPowerUp(animalTeam1Active);
                     case 4 -> newDefenseUp(animalTeam1Active);
                     case 5 -> newIncreaseCounterForSmokesScreen(animalTeam1Active);
