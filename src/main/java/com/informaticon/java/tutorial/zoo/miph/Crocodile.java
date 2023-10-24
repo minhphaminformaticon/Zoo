@@ -1,18 +1,16 @@
 package com.informaticon.java.tutorial.zoo.miph;
 
 public class Crocodile extends Animal implements Predator {
-    public Crocodile(String name, int age, int strength, int health, int defense) {
-        super(name, age, strength, health, defense);
+    public Crocodile(String name, int age, int strength, int health, int defense, int speed) {
+        super(name, age, strength, health, defense, speed);
         setIcon(getIcon());
+        setAnimal("crocodile");
     }
 
     String claws = "With its sharp claws on all fours, it stalks its prey underwater.";
 
     String scale = getName() + " uses its scales to protect itself.";
 
-    String animal = "crocodile";
-
-    String icon = "✩\uD83E\uDD88✮";
 
     @Override
     public void makeSound() {
@@ -38,11 +36,5 @@ public class Crocodile extends Animal implements Predator {
     @Override
     public void eatMeat() {
         System.out.println(getName() + "eats meat");
-    }
-
-
-    @Override
-    public String getAnimal() {
-        return animal;
     }
 }

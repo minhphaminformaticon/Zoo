@@ -6,23 +6,41 @@ import java.util.Scanner;
 
 public class Game {
 
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
+
     public boolean mainFunction;
 
     Random countR = new Random();
+
+    // class variables with active or benched states for team 1 & 2
+    private Animal team1Active;
+    private Animal team1Benched;
+    private Animal team2Active;
+    private Animal team2Benched;
+
 
     public Game() {
         mainFunction = true;
     }
 
     public void newIncreaseCounterForSmokesScreen(Animal animal1Or2) {
-        animal1Or2.counter++;
+        animal1Or2.setCounter(animal1Or2.getCounter() + 1);
+        System.out.println(animal1Or2.getName() + " has increased its smokescounter to: " + animal1Or2.getCounter());
     }
 
     public void executeSmokesBasedOnPercentage(Animal attacker, Animal defender) {
         int percentage = calculatePercentage(defender);
 
         if (countR.nextInt(100) < percentage) {
-            defender.counter = 0;
+            defender.setCounter(0);
             dodge();
         } else {
             attack(attacker, defender);
@@ -34,7 +52,7 @@ public class Game {
     }
 
     public int calculatePercentage(Animal animal1Or2) {
-        return Math.min(animal1Or2.counter * 25, 100);
+        return Math.min(animal1Or2.getCounter() * 25, 100);
     }
 
     /**
@@ -72,98 +90,126 @@ public class Game {
         Animal benchedAnimals2 = zooAnimals.get(index4);
 
         Animal[] selectedAnimals = new Animal[]{animal1Or2, animal1or2, benchedAnimals, benchedAnimals2};
-        System.out.println("Battle: " + selectedAnimals[0].getName() + " vs " + selectedAnimals[1].getName());
+        System.out.println("Battle: " + selectedAnimals[0].getName() + " & " + selectedAnimals[2].getName() + " vs " + selectedAnimals[1].getName() + " & " + selectedAnimals[3].getName());
 
-        fight(selectedAnimals[0], selectedAnimals[1], selectedAnimals[2], selectedAnimals[3]);
+        team1Active = selectedAnimals[0];
+        team1Benched = selectedAnimals[2];
+        team2Active = selectedAnimals[1];
+        team2Benched = selectedAnimals[3];
+
+        fight(team1Active, team2Active, team1Benched, team2Benched);
+
         return false;
     }
 
     public void attack(Animal attacker, Animal defender) {
 
-        int pDamage = attacker.strength;
-        int opDefense = defender.defense;
+        int pDamage = attacker.getStrength();
+        int opDefense = defender.getDefense();
 
         int dmgTaken = opDefense - pDamage;
         int dmgOutput = 0;
 
         if (dmgTaken < 0) {
-            defender.health += dmgTaken;
+            defender.setHealth(defender.getHealth() + dmgTaken);
             dmgOutput = Math.abs(dmgTaken);
         }
-        System.out.println(attacker.name + " inflicts " + dmgOutput + " dmg to " + defender.name);
-        System.out.println("health: " + defender.health);
+        System.out.println(attacker.getName() + " inflicts " + dmgOutput + " dmg to " + defender.getName());
+        System.out.println("health: " + defender.getHealth());
     }
 
     public void newheal(Animal animal1Or2) {
-        System.out.println(animal1Or2.maxHealth);
-        System.out.println(animal1Or2.health);
-        int heal = 20;
-        if (animal1Or2.maxHealth <= animal1Or2.health) {
+        Random random = new Random();
+        System.out.println(animal1Or2.getMaxHealth());
+        System.out.println(animal1Or2.getHealth());
+        int heal = random.nextInt(10, 100);
+        ;
+        if (animal1Or2.getMaxHealth() <= animal1Or2.getHealth()) {
             System.out.println("You can't heal because your health has already reached its max!");
             return;
         } else {
-            int newHealth = Math.min(animal1Or2.maxHealth, animal1Or2.health + heal);
-            int actualHeal = newHealth - animal1Or2.health;
-            animal1Or2.health = newHealth;
-            System.out.println(animal1Or2.name + " healed for " + actualHeal + " health.");
-            System.out.println(animal1Or2.health);
+            int newHealth = Math.min(animal1Or2.getMaxHealth(), animal1Or2.getHealth() + heal);
+            int actualHeal = newHealth - animal1Or2.getHealth();
+            animal1Or2.setHealth(newHealth);
+            System.out.println(animal1Or2.getName() + " healed for " + actualHeal + " health.");
+            System.out.println(animal1Or2.getHealth());
         }
     }
 
     public void newPowerUp(Animal animal1Or2) {
-        System.out.println("the previous strength: " + animal1Or2.strength);
+        System.out.println("the previous strength: " + animal1Or2.getStrength());
         System.out.println();
+        Random random = new Random();
+        double randomMultiplier = random.nextDouble();
+        int currentStrength = animal1Or2.getStrength();
+        double strengthMultiplier = currentStrength * (randomMultiplier);
+        double strengthMultiplied = currentStrength + strengthMultiplier;
 
-        int currentStrength = animal1Or2.strength;
-        double strengthMultiplier = currentStrength * 0.2;
-        double strengthMutiplied = currentStrength + strengthMultiplier;
+        currentStrength = (int) strengthMultiplied;
+        animal1Or2.setStrength(currentStrength);
 
-        currentStrength = (int) strengthMutiplied;
-        animal1Or2.strength = currentStrength;
-
-        System.out.println(animal1Or2.name + " has its strength increased to " + currentStrength);
+        System.out.println(animal1Or2.getName() + " has its strength increased to " + currentStrength);
     }
 
+    public void newDefenseUp(Animal animal1Or2) {
+        System.out.println("the previous strength: " + animal1Or2.getDefense());
+        System.out.println();
+        Random random = new Random();
+        double randomMultiplier = random.nextDouble();
+        int currentDefense = animal1Or2.getDefense();
+        double defenseMultiplier = currentDefense * (randomMultiplier);
+        double defenseMultiplied = currentDefense + defenseMultiplier;
+
+        currentDefense = (int) defenseMultiplied;
+        animal1Or2.setDefense(currentDefense);
+
+        System.out.println(animal1Or2.getName() + " has its defense increased to " + currentDefense);
+    }
+
+
     public void switchAnimal(Animal oldAnimal, Animal newAnimal) {
-        int switchedStrength = oldAnimal.strength;
-        int switchedHealth = oldAnimal.health;
-        int switchedDefense = oldAnimal.defense;
-        String switchedName = oldAnimal.name;
+        int switchedStrength = oldAnimal.getStrength();
+        int switchedHealth = oldAnimal.getHealth();
+        int switchedDefense = oldAnimal.getDefense();
+        int switchedSpeed = oldAnimal.getSpeed();
+        String switchedName = oldAnimal.getName();
         String switchedIcon = oldAnimal.getIcon();
 
-        oldAnimal.strength = newAnimal.strength;
-        oldAnimal.health = newAnimal.health;
-        oldAnimal.defense = newAnimal.defense;
+        oldAnimal.setStrength(newAnimal.getStrength());
+        oldAnimal.setHealth(newAnimal.getHealth());
+        oldAnimal.setDefense(newAnimal.getDefense());
+        oldAnimal.setSpeed(newAnimal.getSpeed());
         oldAnimal.setIcon(newAnimal.getIcon());
 
-        newAnimal.strength = switchedStrength;
-        newAnimal.health = switchedHealth;
-        newAnimal.defense = switchedDefense;
+        newAnimal.setStrength(switchedStrength);
+        newAnimal.setHealth(switchedHealth);
+        newAnimal.setDefense(switchedDefense);
+        newAnimal.setSpeed(switchedSpeed);
         newAnimal.setIcon(switchedIcon);
 
-        System.out.println(oldAnimal.name + " has been switched with " + newAnimal.name);
-        oldAnimal.name = newAnimal.name;
-        newAnimal.name = switchedName;
+        System.out.println(oldAnimal.getName() + " has been switched with " + newAnimal.getName());
+        oldAnimal.setName(newAnimal.getName());
+        newAnimal.setName(switchedName);
 
-        int switchedMaxHealth = oldAnimal.maxHealth;
-        oldAnimal.maxHealth = newAnimal.maxHealth;
-        newAnimal.maxHealth = switchedMaxHealth;
+        int switchedMaxHealth = oldAnimal.getMaxHealth();
+        oldAnimal.setMaxHealth(newAnimal.getMaxHealth());
+        newAnimal.setMaxHealth(switchedMaxHealth);
     }
 
 
     public void endGame(Animal animal1, Animal animal2, Animal animal3, Animal animal4) {
         System.out.println();
         System.out.println("zoo.Game Over!");
-        if (animal1.health <= 0 && animal3.health <= 0) {
-            System.out.println(animal2.name + " and " + animal4.name + " wins!");
+        if (animal1.getHealth() <= 0 && animal3.getHealth() <= 0) {
+            System.out.println(animal2.getName() + " and " + animal4.getName() + " wins!");
         } else {
-            System.out.println(animal1.name + " and " + animal3.name + " wins!");
+            System.out.println(animal1.getName() + " and " + animal3.getName() + " wins!");
         }
     }
 
     public void drawHealthBar(Animal animal) {
         int barLength = 20;
-        double healthBarFill = ((double) animal.health / animal.maxHealth) * barLength;
+        double healthBarFill = ((double) animal.getHealth() / animal.getMaxHealth()) * barLength;
 
         System.out.print("Health: [");
 
@@ -175,19 +221,20 @@ public class Game {
             }
         }
 
-        System.out.print("] " + animal.health + "/" + animal.maxHealth);
+        System.out.print("] " + animal.getHealth() + "/" + animal.getMaxHealth());
     }
 
     public void animalFainted(Animal animalFainted, Animal benchedAnimal) {
         System.out.println();
-        System.out.println(animalFainted.name + " has been fainted!");
+        System.out.println(animalFainted.getName() + " has been fainted!");
         System.out.println();
         switchAnimal(animalFainted, benchedAnimal);
     }
 
     public void displayAnimalStats(Animal animal) {
-        System.out.println(animal.getIcon() + " " + animal.name + " stats: " + " ⚔\uFE0F: " + animal.strength + " \uD83D\uDEE1\uFE0F: " + animal.defense + " \uD83D\uDE36\u200D\uD83C\uDF2B\uFE0F: " + animal.counter);
+        System.out.println(animal.getIcon() + " " + animal.getName() + " stats: " + " ⚔\uFE0F: " + animal.getStrength() + " \uD83D\uDEE1\uFE0F: " + animal.getDefense() + " \uD83C\uDFC3: " + animal.getSpeed() + " \uD83D\uDE36\u200D\uD83C\uDF2B\uFE0F: " + animal.getCounter());
     }
+
 
     public void battleAction(Animal attacker, Animal defender) {
         System.out.println("--------------------------------------");
@@ -201,56 +248,146 @@ public class Game {
         System.out.println();
     }
 
-    public void fightInput(Animal attacker, Animal defender, Animal benchedAnimal) {
-        System.out.println("choose 1 option for " + attacker.name);
+    public void battlePhase(Animal animalTeam1Active, Animal animalTeam2Active, Animal animalTeam1benched, Animal animalTeam2benched) {
+        if (animalTeam1Active.getSpeed() > animalTeam2Active.getSpeed()) {
+            switch (animalTeam1Active.getActionChoice()) {
+                case 1 -> executeSmokesBasedOnPercentage(animalTeam1Active, animalTeam2Active);
+                case 2 -> newheal(animalTeam1Active);
+                case 3 -> newPowerUp(animalTeam1Active);
+                case 4 -> newDefenseUp(animalTeam1Active);
+                case 5 -> newIncreaseCounterForSmokesScreen(animalTeam1Active);
+                case 6 -> switchAnimal(animalTeam1Active, animalTeam1benched);
+            }
+            switch (animalTeam2Active.getActionChoice()) {
+                case 1 -> executeSmokesBasedOnPercentage(animalTeam2Active, animalTeam1Active);
+                case 2 -> newheal(animalTeam2Active);
+                case 3 -> newPowerUp(animalTeam2Active);
+                case 4 -> newDefenseUp(animalTeam2Active);
+                case 5 -> newIncreaseCounterForSmokesScreen(animalTeam1Active);
+                case 6 -> switchAnimal(animalTeam2Active, animalTeam2benched);
+            }
+        } else if (animalTeam1Active.getSpeed() < animalTeam2Active.getSpeed()) {
+            switch (animalTeam2Active.getActionChoice()) {
+                case 1 -> executeSmokesBasedOnPercentage(animalTeam2Active, animalTeam1Active);
+                case 2 -> newheal(animalTeam2Active);
+                case 3 -> newPowerUp(animalTeam2Active);
+                case 4 -> newDefenseUp(animalTeam2Active);
+                case 5 -> newIncreaseCounterForSmokesScreen(animalTeam1Active);
+                case 6 -> switchAnimal(animalTeam2Active, animalTeam2benched);
+            }
+            switch (animalTeam1Active.getActionChoice()) {
+                case 1 -> executeSmokesBasedOnPercentage(animalTeam1Active, animalTeam2Active);
+                case 2 -> newheal(animalTeam1Active);
+                case 3 -> newPowerUp(animalTeam1Active);
+                case 4 -> newDefenseUp(animalTeam1Active);
+                case 5 -> newIncreaseCounterForSmokesScreen(animalTeam1Active);
+                case 6 -> switchAnimal(animalTeam1Active, animalTeam1benched);
+            }
+        } else if (animalTeam1Active.getSpeed() == animalTeam2Active.getSpeed()) {
+            Random random = new Random();
+            int bound = 2;
+            int randomChoice = random.nextInt(bound);
+
+            if (randomChoice == 0) {
+                switch (animalTeam1Active.getActionChoice()) {
+                    case 1 -> executeSmokesBasedOnPercentage(animalTeam1Active, animalTeam2Active);
+                    case 2 -> newheal(animalTeam1Active);
+                    case 3 -> newPowerUp(animalTeam1Active);
+                    case 4 -> newDefenseUp(animalTeam1Active);
+                    case 5 -> newIncreaseCounterForSmokesScreen(animalTeam1Active);
+                    case 6 -> switchAnimal(animalTeam1Active, animalTeam1benched);
+                }
+                switch (animalTeam2Active.getActionChoice()) {
+                    case 1 -> executeSmokesBasedOnPercentage(animalTeam2Active, animalTeam1Active);
+                    case 2 -> newheal(animalTeam2Active);
+                    case 3 -> newPowerUp(animalTeam2Active);
+                    case 4 -> newDefenseUp(animalTeam2Active);
+                    case 5 -> newIncreaseCounterForSmokesScreen(animalTeam1Active);
+                    case 6 -> switchAnimal(animalTeam2Active, animalTeam2benched);
+                }
+            } else if (randomChoice == 1) {
+                switch (animalTeam2Active.getActionChoice()) {
+                    case 1 -> executeSmokesBasedOnPercentage(animalTeam2Active, animalTeam1Active);
+                    case 2 -> newheal(animalTeam2Active);
+                    case 3 -> newPowerUp(animalTeam2Active);
+                    case 4 -> newDefenseUp(animalTeam2Active);
+                    case 5 -> newIncreaseCounterForSmokesScreen(animalTeam1Active);
+                    case 6 -> switchAnimal(animalTeam2Active, animalTeam2benched);
+                }
+                switch (animalTeam1Active.getActionChoice()) {
+                    case 1 -> executeSmokesBasedOnPercentage(animalTeam1Active, animalTeam2Active);
+                    case 2 -> newheal(animalTeam1Active);
+                    case 3 -> newPowerUp(animalTeam1Active);
+                    case 4 -> newDefenseUp(animalTeam1Active);
+                    case 5 -> newIncreaseCounterForSmokesScreen(animalTeam1Active);
+                    case 6 -> switchAnimal(animalTeam1Active, animalTeam1benched);
+                }
+            }
+        }
+    }
+
+    public void fightInput(Animal attacker) {
+        System.out.println("choose 1 option for " + attacker.getName());
         System.out.println("1. attack");
         System.out.println("2. heal");
         System.out.println("3. power up");
-        System.out.println("4. set smokes");
-        System.out.println("5. switch zoo.animals");
+        System.out.println("4. defense up");
+        System.out.println("5. set smokes");
+        System.out.println("6. switch animals");
         System.out.println();
-        Scanner inputGame = new Scanner(System.in);
-        int actionGame;
-        actionGame = Integer.parseInt(inputGame.nextLine());
-        switch (actionGame) {
-            case 1 -> executeSmokesBasedOnPercentage(attacker, defender);
-            case 2 -> newheal(attacker);
-            case 3 -> newPowerUp(attacker);
-            case 4 -> newIncreaseCounterForSmokesScreen(attacker);
-            case 5 -> switchAnimal(attacker, benchedAnimal);
-            default -> System.out.println("Invalid choice. Please try again.");
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        int actionGame = 0;
+        try {
+            actionGame = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            System.out.println("You must input a number!");
         }
-
+        switch (actionGame) {
+            case 1 -> attacker.setActionChoice(actionGame);
+            case 2 -> attacker.setActionChoice(actionGame);
+            case 3 -> attacker.setActionChoice(actionGame);
+            case 4 -> attacker.setActionChoice(actionGame);
+            case 5 -> attacker.setActionChoice(actionGame);
+            case 6 -> attacker.setActionChoice(actionGame);
+            default -> System.out.println("Invalid choice!");
+        }
     }
 
     public void fight(Animal animal1, Animal animal2, Animal animal3, Animal animal4) {
+
+        // work with class variables from here
+        //team1Active
+
+
         boolean isTurnAnimal1 = true;
         if (animal1 == null || animal2 == null) {
             return;
         } else {
-            animal1.maxHealth = animal1.getHealth();
-            animal2.maxHealth = animal2.getHealth();
-            animal3.maxHealth = animal3.getHealth();
-            animal4.maxHealth = animal4.getHealth();
+            animal1.setMaxHealth(animal1.getHealth());
+            animal2.setMaxHealth(animal2.getHealth());
+            animal3.setMaxHealth(animal3.getHealth());
+            animal4.setMaxHealth(animal4.getHealth());
 
 
-            while (animal1.health > 0 || animal2.health > 0) {
+            while (animal1.getHealth() > 0 || animal2.getHealth() > 0) {
                 if (isTurnAnimal1) {
                     battleAction(animal1, animal2);
-                    fightInput(animal1, animal2, animal3);
+                    fightInput(animal1);
                     isTurnAnimal1 = false;
                 } else {
                     battleAction(animal2, animal1);
-                    fightInput(animal2, animal1, animal4);
+                    fightInput(animal2);
+                    battlePhase(animal1, animal2, animal3, animal4);
                     isTurnAnimal1 = true;
                 }
-                if ((animal1.health <= 0 && animal3.health <= 0) || (animal2.health <= 0 && animal4.health <= 0)) {
+                if ((animal1.getHealth() <= 0 && animal3.getHealth() <= 0) || (animal2.getHealth() <= 0 && animal4.getHealth() <= 0)) {
                     endGame(animal1, animal2, animal3, animal4);
                     return;
-                } else if (animal1.health <= 0) {
+                } else if (animal1.getHealth() <= 0) {
                     animalFainted(animal1, animal3);
                     isTurnAnimal1 = false;
-                } else if (animal2.health <= 0) {
+                } else if (animal2.getHealth() <= 0) {
                     animalFainted(animal2, animal4);
                     isTurnAnimal1 = true;
                 }
