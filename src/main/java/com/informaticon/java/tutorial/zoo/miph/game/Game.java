@@ -24,7 +24,7 @@ public class Game {
     private Animal team1Benched;
     private Animal team2Active;
     private Animal team2Benched;
-
+    private boolean mainFunction;
 
     public Game() {
         setMainFunction(true);
@@ -39,24 +39,25 @@ public class Game {
         }
         Random random = new Random();
 
-        int index1 = random.nextInt(zooAnimals.size());
-        int index2;
-        do {
-            index2 = random.nextInt(zooAnimals.size());
-        } while (index2 == index1);
-        int index3;
-        do {
-            index3 = random.nextInt(zooAnimals.size());
-        } while (index3 == index2 || index3 == index1);
-        int index4;
-        do {
-            index4 = random.nextInt(zooAnimals.size());
-        } while (index4 == index1 || index4 == index2 || index4 == index3);
+//        int index1 = random.nextInt(zooAnimals.size());
+//        int index2;
+//        do {
+//            index2 = random.nextInt(zooAnimals.size());
+//        } while (index2 == index1);
+//        int index3;
+//        do {
+//            index3 = random.nextInt(zooAnimals.size());
+//        } while (index3 == index2 || index3 == index1);
+//        int index4;
+//        do {
+//            index4 = random.nextInt(zooAnimals.size());
+//        } while (index4 == index1 || index4 == index2 || index4 == index3);
 
-        team1Active = zooAnimals.get(index1);
-        team2Active = zooAnimals.get(index2);
-        team1Benched = zooAnimals.get(index3);
-        team2Benched = zooAnimals.get(index4);
+
+        team1Active = zooAnimals.get(6);
+        team2Active = zooAnimals.get(2);
+        team1Benched = zooAnimals.get(1);
+        team2Benched = zooAnimals.get(5);
 
         System.out.println("Battle: " + ANSI_BLUE + team1Active.getName() + " & " + team1Benched.getName()
                 + ANSI_RESET + " vs " + ANSI_RED + team2Active.getName() + " & " + team2Benched.getName()
@@ -97,10 +98,10 @@ public class Game {
                     endGame();
                     return;
                 } else if (team1Active.getHealth() <= 0) {
-                    animalFainted(team1Active, 1);
+                    animalFainted(team1Active, team1Benched, 1);
                     isTurnAnimal1 = false;
                 } else if (team2Active.getHealth() <= 0) {
-                    animalFainted(team2Active, 2);
+                    animalFainted(team2Active, team2Benched, 2);
                     isTurnAnimal1 = true;
                 }
             }
@@ -115,6 +116,32 @@ public class Game {
         } else {
             System.out.println(team1Active.getName() + " and " + team1Benched.getName() + " wins!");
         }
+    }
+
+    public void battlePhase() {
+
+        if (team1Active.getSpeed() != team2Active.getSpeed()) {
+            if (team1Active.getSpeed() > team2Active.getSpeed()) {
+                // team 1 goes first
+                performingAction(team1Active, team2Active, team1Benched, 1);
+                performingAction(team2Active, team1Active, team2Benched, 2);
+            } else if (team1Active.getSpeed() < team2Active.getSpeed()) {
+                performingAction(team2Active, team1Active, team2Benched, 2);
+                performingAction(team1Active, team2Active, team1Benched, 1);
+            }
+        } else {
+            Random random = new Random();
+            int bound = 2;
+            int randomChoice = random.nextInt(bound);
+            if (randomChoice == 0) {
+                performingAction(team1Active, team2Active, team1Benched, 1);
+                performingAction(team2Active, team1Active, team2Benched, 2);
+            } else {
+                performingAction(team2Active, team1Active, team2Benched, 2);
+                performingAction(team1Active, team2Active, team1Benched, 1);
+            }
+        }
+
     }
 
     public void fightInput(Animal attacker) {
@@ -183,46 +210,24 @@ public class Game {
     }
 
     public void performingAction(Animal activeAnimal, Animal activeAnimalOpponent, Animal benchedAnimal, int team) {
-        switch (activeAnimal.getActionChoice()) {
-            case 1 -> executeSmokesBasedOnPercentage(activeAnimal, activeAnimalOpponent);
-            case 2 -> newHeal(activeAnimal);
-            case 3 -> newPowerUp(activeAnimal);
-            case 4 -> newDefenseUp(activeAnimal);
-            case 5 -> newIncreaseCounterForSmokesScreen(activeAnimal);
-            case 6 -> {
-                if (benchedAnimal.getHealth() <= 0) {
-                    System.out.println(ANSI_RED + activeAnimal.getName() + " can't be switched with " + benchedAnimal.getName() + ANSI_RESET);
-                } else {
-                    switchAnimal(team);
+        if (activeAnimal.getHealth() > 0) {
+            switch (activeAnimal.getActionChoice()) {
+                case 1 -> executeSmokesBasedOnPercentage(activeAnimal, activeAnimalOpponent);
+                case 2 -> newHeal(activeAnimal);
+                case 3 -> newPowerUp(activeAnimal);
+                case 4 -> newDefenseUp(activeAnimal);
+                case 5 -> newIncreaseCounterForSmokesScreen(activeAnimal);
+                case 6 -> {
+                    if (benchedAnimal.getHealth() <= 0) {
+                        System.out.println(ANSI_RED + activeAnimal.getName() + " can't be switched with " + benchedAnimal.getName() + ANSI_RESET);
+                    } else {
+                        switchAnimal(team);
+                    }
                 }
             }
-        }
-    }
-
-    public void battlePhase() {
-
-        if (team1Active.getSpeed() != team2Active.getSpeed()) {
-            if (team1Active.getSpeed() > team2Active.getSpeed()) {
-                // team 1 goes first
-                performingAction(team1Active, team2Active, team1Benched, 1);
-                performingAction(team2Active, team1Active, team2Benched, 2);
-            } else if (team1Active.getSpeed() < team2Active.getSpeed()) {
-                performingAction(team2Active, team1Active, team2Benched, 2);
-                performingAction(team1Active, team2Active, team1Benched, 1);
-            }
         } else {
-            Random random = new Random();
-            int bound = 2;
-            int randomChoice = random.nextInt(bound);
-            if (randomChoice == 0) {
-                performingAction(team1Active, team2Active, team1Benched, 1);
-                performingAction(team2Active, team1Active, team2Benched, 2);
-            } else {
-                performingAction(team2Active, team1Active, team2Benched, 2);
-                performingAction(team1Active, team2Active, team1Benched, 1);
-            }
+            System.out.println(activeAnimal.getName() + " has fainted, it can't perform any actions!");
         }
-
     }
 
     public void attack(Animal attacker, Animal defender) {
@@ -240,7 +245,7 @@ public class Game {
                     ANSI_RESET);
             System.out.println("health: " + defender.getHealth());
         } else if (dmgTaken == 0) {
-            System.out.println(ANSI_RED + attacker.getName() + "'s attack has no effect on" + defender.getName() + ANSI_RESET);
+            System.out.println(ANSI_RED + attacker.getName() + "'s attack has no effect on " + defender.getName() + ANSI_RESET);
         } else {
             attacker.setHealth(attacker.getHealth() - dmgTaken);
             dmgOutput = Math.abs(dmgTaken);
@@ -256,6 +261,7 @@ public class Game {
 
     public void newHeal(Animal animal1Or2) {
         Random random = new Random();
+        System.out.println();
         System.out.println(animal1Or2.getMaxHealth());
         System.out.println(animal1Or2.getHealth());
         int heal = random.nextInt(10, 100);
@@ -269,7 +275,6 @@ public class Game {
             int newHealth = Math.min(animal1Or2.getMaxHealth(), animal1Or2.getHealth() + heal);
             int actualHeal = newHealth - animal1Or2.getHealth();
             animal1Or2.setHealth(newHealth);
-            System.out.println();
             System.out.println(ANSI_GREEN + animal1Or2.getName() + " healed for " + actualHeal + " health." + ANSI_RESET);
             System.out.println(animal1Or2.getHealth());
         }
@@ -348,19 +353,21 @@ public class Game {
                 switchedAnimal = team2Active;
                 team2Active = team2Benched;
                 team2Benched = switchedAnimal;
-                System.out.println();
                 System.out.println(ANSI_YELLOW + team2Benched.getName() + " has been switched with " + team2Active.getName() + ANSI_RESET);
             }
         }
     }
 
-    public void animalFainted(Animal animalFainted, int team) {
+    public void animalFainted(Animal animalFainted, Animal switchedAnimal, int team) {
         System.out.println();
         System.out.println(animalFainted.getName() + " has been fainted!");
-        System.out.println();
         switchAnimal(team);
+        if (team == 1) {
+            fightInput(switchedAnimal);
+        }
     }
 
     public void setMainFunction(boolean mainFunction) {
+        this.mainFunction = mainFunction;
     }
 }

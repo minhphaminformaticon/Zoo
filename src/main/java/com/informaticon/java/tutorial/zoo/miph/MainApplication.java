@@ -38,7 +38,6 @@ public class MainApplication {
         zoo.addAnimal(panda);
         zoo.addAnimal(penguin);
         zoo.addAnimal(bear);
-
         System.out.println("W E L C O M E  T O  Z O O");
         System.out.println("      /\";;:;;\"\\");
         System.out.println("    (:;/\\,-,/\\;;");
@@ -154,6 +153,6 @@ public class MainApplication {
             }
         }
         zoo.addAnimal(animal);
-        System.out.println(name + " has been added to the zoo as a " + animal.getClass().getCanonicalName());
+        System.out.println(name + " has been added to the zoo as a " + animal.getClass().getSimpleName());
     }
 }
