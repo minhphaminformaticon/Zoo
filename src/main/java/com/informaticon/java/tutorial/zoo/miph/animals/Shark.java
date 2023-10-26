@@ -1,15 +1,19 @@
-package com.informaticon.java.tutorial.zoo.miph;
+package com.informaticon.java.tutorial.zoo.miph.animals;
+
+import com.informaticon.java.tutorial.zoo.miph.animals.template.Predator;
+import com.informaticon.java.tutorial.zoo.miph.animals.template.SeaAnimal;
 
 public class Shark extends Animal implements Predator, SeaAnimal {
 
     public Shark(String name, int age, int strength, int health, int defense, int speed) {
         super(name, age, strength, health, defense, speed);
         setIcon("✩\uD83E\uDD88✮");
-        setAnimal("shark");
+        setFin("the big scary " + getName() + " uses its fins to swim in the deep.");
+        setKingOfTheSea("The shark is the king of the deep.");
     }
 
-    String fin = "the big scary " + getName() + " uses its fins to swim in the deep.";
-    String kingOfTheSea = "The shark is the king of the deep.";
+    private String fin;
+    private String kingOfTheSea;
 
     @Override
     public void makeSound() {
@@ -27,8 +31,8 @@ public class Shark extends Animal implements Predator, SeaAnimal {
 
     @Override
     public void attributes() {
-        System.out.println(fin);
-        System.out.println(kingOfTheSea);
+        System.out.println(getFin());
+        System.out.println(getKingOfTheSea());
     }
 
     @Override
@@ -49,5 +53,21 @@ public class Shark extends Animal implements Predator, SeaAnimal {
     @Override
     public void eatFish() {
         System.out.println(getName() + " eats fish.");
+    }
+
+    public String getFin() {
+        return fin;
+    }
+
+    public void setFin(String fin) {
+        this.fin = fin;
+    }
+
+    public String getKingOfTheSea() {
+        return kingOfTheSea;
+    }
+
+    public void setKingOfTheSea(String kingOfTheSea) {
+        this.kingOfTheSea = kingOfTheSea;
     }
 }

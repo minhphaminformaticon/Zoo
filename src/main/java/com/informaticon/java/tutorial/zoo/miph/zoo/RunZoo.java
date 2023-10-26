@@ -1,4 +1,6 @@
-package com.informaticon.java.tutorial.zoo.miph;
+package com.informaticon.java.tutorial.zoo.miph.zoo;
+
+import com.informaticon.java.tutorial.zoo.miph.animals.Animal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +19,12 @@ public class RunZoo {
     public void addAnimal(Animal animal) {
         animals.add(animal);
         for (Cage cage : cages) {
-            if (cage.getAnimalType().equals(animal.getAnimal())) {
+            if (cage.getAnimalType().equals(animal.getIcon())) {
                 cage.addAnimal(animal);
                 return;
             }
         }
-        Cage newCage = new Cage(animal.getAnimal());
+        Cage newCage = new Cage(animal.getIcon());
         newCage.addAnimal(animal);
 
         cages.add(newCage);

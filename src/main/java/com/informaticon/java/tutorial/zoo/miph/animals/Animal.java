@@ -1,4 +1,4 @@
-package com.informaticon.java.tutorial.zoo.miph;
+package com.informaticon.java.tutorial.zoo.miph.animals;
 
 public abstract class Animal {
 
@@ -13,22 +13,26 @@ public abstract class Animal {
         this.health = health;
         this.defense = defense;
         this.speed = speed;
+        this.maxHealth = health;
+        this.originalStrength = strength;
+        this.originalDefense = defense;
     }
 
     private String name;
     private int age;
     private String icon;
-    private String animal;
     private int health;
     private int strength;
 
     private int counter;
-    private int maxHealth = health;
-    private int originalStrength = strength;
+    private int maxHealth = 0;
+    private int originalStrength = 0;
     private int defense;
-    private int originalDefense = defense;
+    private int originalDefense = 0;
     private int speed;
     private int actionChoice = 0;
+
+    private int maxSmokesUsage = 0;
 
 
     public abstract void makeSound();
@@ -37,10 +41,6 @@ public abstract class Animal {
 
     public abstract void attributes();
 
-
-    public String getAnimal() {
-        return animal;
-    }
 
     public int getCounter() {
         return counter;
@@ -90,16 +90,16 @@ public abstract class Animal {
         return originalDefense;
     }
 
+    public int getMaxSmokesUsage() {
+        return maxSmokesUsage;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public void setAnimal(String animal) {
-        this.animal = animal;
     }
 
     public void setHealth(int health) {
@@ -140,5 +140,9 @@ public abstract class Animal {
 
     public void setOriginalDefense(int originalDefense) {
         this.originalDefense = originalDefense;
+    }
+
+    public void setMaxSmokesUsage(int maxSmokesUsage) {
+        this.maxSmokesUsage = maxSmokesUsage;
     }
 }

@@ -1,13 +1,15 @@
-package com.informaticon.java.tutorial.zoo.miph;
+package com.informaticon.java.tutorial.zoo.miph.animals;
+
+import com.informaticon.java.tutorial.zoo.miph.animals.template.Predator;
 
 public class Snake extends Animal implements Predator {
     public Snake(String name, int age, int strength, int health, int defense, int speed) {
         super(name, age, strength, health, defense, speed);
         setIcon("✩\uD83D\uDC0D✮");
-        setAnimal("snake");
+        setScale(getName() + " uses the scale to shed its skin");
     }
 
-    String scale = getName() + " uses the scale to shed its skin";
+    private String scale;
 
 
     @Override
@@ -23,7 +25,7 @@ public class Snake extends Animal implements Predator {
 
     @Override
     public void attributes() {
-        System.out.println(scale);
+        System.out.println(getScale());
 
     }
 
@@ -37,4 +39,11 @@ public class Snake extends Animal implements Predator {
         System.out.println(getName() + " eats meat.");
     }
 
+    public String getScale() {
+        return scale;
+    }
+
+    public void setScale(String scale) {
+        this.scale = scale;
+    }
 }

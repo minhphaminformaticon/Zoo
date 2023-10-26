@@ -1,12 +1,14 @@
-package com.informaticon.java.tutorial.zoo.miph;
+package com.informaticon.java.tutorial.zoo.miph.animals;
+
+import com.informaticon.java.tutorial.zoo.miph.animals.template.Predator;
 
 public class Lion extends Animal implements Predator {
-    String mane = getName() + " has majestic golden mane";
+    private String mane;
 
     public Lion(String name, int age, int strength, int health, int defense, int speed) {
         super(name, age, strength, health, defense, speed);
         setIcon("✩🦁✮");
-        setAnimal("lion");
+        setMane(getName() + " has majestic golden mane");
     }
 
 
@@ -32,8 +34,16 @@ public class Lion extends Animal implements Predator {
         eatMeat();
     }
 
+    public String getMane() {
+        return mane;
+    }
+
+    public void setMane(String mane) {
+        this.mane = mane;
+    }
+
     @Override
     public void attributes() {
-        System.out.println(mane);
+        System.out.println(getMane());
     }
 }

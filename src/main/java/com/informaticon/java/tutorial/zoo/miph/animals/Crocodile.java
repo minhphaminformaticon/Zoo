@@ -1,15 +1,18 @@
-package com.informaticon.java.tutorial.zoo.miph;
+package com.informaticon.java.tutorial.zoo.miph.animals;
+
+import com.informaticon.java.tutorial.zoo.miph.animals.template.Predator;
 
 public class Crocodile extends Animal implements Predator {
     public Crocodile(String name, int age, int strength, int health, int defense, int speed) {
         super(name, age, strength, health, defense, speed);
         setIcon(getIcon());
-        setAnimal("crocodile");
+        setClaws("With its sharp claws on all fours, it stalks its prey underwater.");
+        setScale(getName() + " uses its scales to protect itself.");
     }
 
-    String claws = "With its sharp claws on all fours, it stalks its prey underwater.";
+    private String claws;
 
-    String scale = getName() + " uses its scales to protect itself.";
+    private String scale;
 
 
     @Override
@@ -24,8 +27,8 @@ public class Crocodile extends Animal implements Predator {
 
     @Override
     public void attributes() {
-        System.out.println(scale);
-        System.out.println(claws);
+        System.out.println(getClaws());
+        System.out.println(getScale());
     }
 
     @Override
@@ -36,5 +39,21 @@ public class Crocodile extends Animal implements Predator {
     @Override
     public void eatMeat() {
         System.out.println(getName() + "eats meat");
+    }
+
+    public String getClaws() {
+        return claws;
+    }
+
+    public void setClaws(String claws) {
+        this.claws = claws;
+    }
+
+    public String getScale() {
+        return scale;
+    }
+
+    public void setScale(String scale) {
+        this.scale = scale;
     }
 }

@@ -1,13 +1,15 @@
-package com.informaticon.java.tutorial.zoo.miph;
+package com.informaticon.java.tutorial.zoo.miph.animals;
+
+import com.informaticon.java.tutorial.zoo.miph.animals.template.Predator;
 
 public class Tiger extends Animal implements Predator {
     public Tiger(String name, int age, int strength, int health, int defense, int speed) {
         super(name, age, strength, health, defense, speed);
         setIcon("✩\uD83D\uDC2F✮");
-        setAnimal("tiger");
+        setClaws(getName() + " uses the scale to shed its skin");
     }
 
-    String claws = getName() + " has huge claws to deal huge damage to its prey.";
+    private String claws = getName() + " has huge claws to deal huge damage to its prey.";
 
     @Override
     public void makeSound() {
@@ -22,7 +24,7 @@ public class Tiger extends Animal implements Predator {
 
     @Override
     public void attributes() {
-        System.out.println(claws);
+        System.out.println(getClaws());
     }
 
     @Override
@@ -35,4 +37,11 @@ public class Tiger extends Animal implements Predator {
         System.out.println(getName() + " eats meat.");
     }
 
+    public String getClaws() {
+        return claws;
+    }
+
+    public void setClaws(String claws) {
+        this.claws = claws;
+    }
 }

@@ -1,5 +1,9 @@
 package com.informaticon.java.tutorial.zoo.miph;
 
+import com.informaticon.java.tutorial.zoo.miph.animals.*;
+import com.informaticon.java.tutorial.zoo.miph.game.Game;
+import com.informaticon.java.tutorial.zoo.miph.zoo.RunZoo;
+
 import java.util.Scanner;
 
 public class MainApplication {
@@ -11,16 +15,17 @@ public class MainApplication {
         RunZoo zoo = new RunZoo();
         Game game = new Game();
 
-        Lion lion = new Lion("lion minh", 20, 100, 180, 70, 90);
-        Tiger tiger = new Tiger("tiger minh", 20, 100, 200, 80, 90);
-        Shark shark = new Shark("shark minh", 20, 100, 190, 50, 80);
+        Lion lion = new Lion("lion minh", 20, 100, 180, 50, 90);
+        Tiger tiger = new Tiger("tiger minh", 20, 100, 200, 80, 60);
+        Shark shark = new Shark("shark minh", 20, 100, 190, 60, 80);
         Elephant elephant = new Elephant("elephant minh", 20, 100, 200, 100, 40);
-        Snake snake = new Snake("snake minh", 20, 80, 100, 30, 90);
-        Gorilla gorilla = new Gorilla("gorilla minh", 20, 80, 200, 80, 40);
-        Giraffe giraffe = new Giraffe("giraffe minh", 20, 70, 200, 80, 40);
-        Zebra zebra = new Zebra("zebra minh", 20, 70, 150, 70, 70);
-        Panda panda = new Panda("panda minh", 20, 60, 200, 150, 20);
-        Penguin penguin = new Penguin("penguin minh", 20, 50, 100, 40, 60);
+        Snake snake = new Snake("snake minh", 20, 80, 100, 40, 100);
+        Gorilla gorilla = new Gorilla("gorilla minh", 20, 80, 200, 90, 70);
+        Giraffe giraffe = new Giraffe("giraffe minh", 20, 70, 150, 100, 70);
+        Zebra zebra = new Zebra("zebra minh", 20, 70, 150, 70, 100);
+        Panda panda = new Panda("panda minh", 20, 100, 170, 100, 40);
+        Penguin penguin = new Penguin("penguin minh", 20, 70, 100, 70, 100);
+        Bear bear = new Bear("bear minh", 20, 80, 190, 80, 80);
 
         zoo.addAnimal(lion);
         zoo.addAnimal(tiger);
@@ -32,6 +37,7 @@ public class MainApplication {
         zoo.addAnimal(zebra);
         zoo.addAnimal(panda);
         zoo.addAnimal(penguin);
+        zoo.addAnimal(bear);
 
         System.out.println("W E L C O M E  T O  Z O O");
         System.out.println("      /\";;:;;\"\\");
@@ -123,6 +129,7 @@ public class MainApplication {
         System.out.println("9. Giraffe");
         System.out.println("10. Zebra");
         System.out.println("11. Panda");
+        System.out.println("12. Bear");
         System.out.println();
         int animalChoice = scanner.nextInt();
         scanner.nextLine();
@@ -140,12 +147,13 @@ public class MainApplication {
             case 9 -> animal = new Giraffe(name, age, strength, health, defense, speed);
             case 10 -> animal = new Zebra(name, age, strength, health, defense, speed);
             case 11 -> animal = new Panda(name, age, strength, health, defense, speed);
+            case 12 -> animal = new Bear(name, age, strength, health, defense, speed);
             default -> {
                 System.out.println("Invalid choice. Animal not added to the zoo.");
                 return;
             }
         }
         zoo.addAnimal(animal);
-        System.out.println(name + " has been added to the zoo as a " + animal.getAnimal());
+        System.out.println(name + " has been added to the zoo as a " + animal.getClass().getCanonicalName());
     }
 }
