@@ -17,7 +17,7 @@ public class Game {
     public static final String ANSI_CYAN = "\u001B[36m";
 
 
-    private Random countR = new Random();
+    private final Random countR = new Random();
 
     // class variables with active or benched states for team 1 & 2
     private Animal team1Active;
